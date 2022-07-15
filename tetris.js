@@ -36,7 +36,7 @@ const canvasArray = [ //10 by 20 array
 console.log(canvas.width, canvas.height, unitX, unitY, canvasArray.length, canvasArray[0].length );
 
 function drawCanvasArray (arr) { //draw transparent grid based on the argument array dimension
-    ctx1.strokeStyle = "#000";
+    ctx1.strokeStyle = "white";
     ctx1.lineWidth = 1/unitX;
 
     for (let i = 0; i <= arr[i].length ; i += 1 ){ //draw vertical lines
@@ -53,15 +53,6 @@ function drawCanvasArray (arr) { //draw transparent grid based on the argument a
         ctx1.stroke();
     }
 }
-
-// const callIPiece = (a = 0, b = 0) => {
-//     ctx.clearRect(0, 0, canvas.width, canvas.height);
-//     ctx.beginPath(); //resetPath
-//     ctx.rect(a, b, unitX*4, unitY); //x, y, width, height
-//     ctx.fillStyle = "red";
-//     ctx.stroke();
-//     ctx.fill();
-// }
 
 const pieceArray = [
         // [1,1],      //O-piece
@@ -82,19 +73,26 @@ const pieceArray = [
         [0,1,0],
 ];
 
-function drawPiece (arr, offsetX,  offsetY) {
+function restartPos(){
+    posX=0;
+    posY=0;
+}
+
+function draw (arr, offsetX,  offsetY) {
     for (let j = 0; j < arr.length; j++){ //y-axis
         for (let i = 0; i < arr[j].length; i++){ //x-axis
             if(arr[j][i] !== 0){ //arr[y][x] 
-                ctx.fillStyle = 'blue';
+                ctx.fillStyle = '#82DFB0';
                 ctx.fillRect(i + offsetX, j + offsetY, 1, 1); //x, y, width, height
+            } else {
+                ctx.fillStyle = 'black';
+                ctx.fillRect(i + offsetX, j + offsetY, 1, 1);
             }
         }
     }
 }
 
 function lockPiece (canvasArr, pieceArr, x, y) {
-    
     for (let j = 0; j < pieceArr.length; j++){ //y-axis
         for (let i = 0; i < pieceArr[j].length; i++){ //x-axis
             if(pieceArr[j][i] !== 0){ // for every array in pieceArr that is 1,
@@ -103,14 +101,18 @@ function lockPiece (canvasArr, pieceArr, x, y) {
             }
         }
     }
-    console.table(canvasArr);
+    //console.table(canvasArr);
 }
 
 function collision (canvasArr, pieceArr, x, y){
     for (let j = 0; j < canvasArr.length; j++){ //y-axis
         for (let i = 0; i < canvasArr[j].length; i++){ //x-axis
-            if(posY + y === 20){ // if canvasArr collides with the bottom end,
-
+            if(
+                y == 17 // y = 1, 
+            ){ // if canvasArr collides with the bottom end,
+                lockPiece(canvasArr, pieceArr, x, y);
+                restartPos();
+                draw(pieceArray, posX, posY);
             }
         }
     }
@@ -141,11 +143,11 @@ function movePiece (dir) {
     }
     console.log(dir, 'was pressed', posX, posY);
 
-    if (posY === 20){
-        collision(canvasArray, pieceArray, posX, posY);
-    }
     // lockPiece(canvasArray, pieceArray, posX, posY);
-    drawPiece(pieceArray, posX, posY);
+    draw(canvasArray, 0, 0);
+    draw(pieceArray, posX, posY);
+    collision(canvasArray, pieceArray, posX, posY);
+    
 }
 
 let dropCounter = 0;
@@ -168,7 +170,6 @@ function update (time = 0) {
 
 drawCanvasArray(canvasArray);
 movePiece();
-
 //lockPiece(canvasArray, pieceArray);
 console.table(canvasArray);
 update();
