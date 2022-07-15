@@ -1,0 +1,36 @@
+p {
+    font-family: sans-serif;
+    font-size: 15px;
+}
+#canvasesdiv {
+    position:absolute;
+    left:0px;
+    top:0px;
+}
+
+/* #container {
+    border: 25px;
+    width:500px;
+    height:1000px;
+    border-style: solid;
+    border-color: rgb(214, 213, 181);
+    border-radius: 10px;
+} */
+
+#grid-bg {
+    width:500px;
+    height:1000px;
+    border:5px solid #000;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 2;
+}
+
+#grid {
+    width:500px;
+    height:1000px;
+    border:5px solid #000;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+}
