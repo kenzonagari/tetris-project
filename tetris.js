@@ -69,22 +69,22 @@ const pieceArray = [
         // [0,1],
         // [1,1],
         [0,0,0],
-        [1,1,1],    //T-piece
+        [1,1,1],    //T-piece - 0s make space for rotation
         [0,1,0],
 ];
 
 function restartPos(){
-    posX=0;
-    posY=0;
+    posX=4;
+    posY=-1;
 }
 
-function draw (arr, offsetX,  offsetY) {
+function draw (arr, offsetX,  offsetY, alpha) {
     for (let j = 0; j < arr.length; j++){ //y-axis
         for (let i = 0; i < arr[j].length; i++){ //x-axis
             if(arr[j][i] !== 0){ //arr[y][x] 
                 ctx.fillStyle = '#82DFB0';
                 ctx.fillRect(i + offsetX, j + offsetY, 1, 1); //x, y, width, height
-            } else {
+            } else if (alpha == false){
                 ctx.fillStyle = 'black';
                 ctx.fillRect(i + offsetX, j + offsetY, 1, 1);
             }
@@ -96,47 +96,51 @@ function lockPiece (canvasArr, pieceArr, x, y) {
     for (let j = 0; j < pieceArr.length; j++){ //y-axis
         for (let i = 0; i < pieceArr[j].length; i++){ //x-axis
             if(pieceArr[j][i] !== 0){ // for every array in pieceArr that is 1,
-                canvasArr[j + y][i + x] = pieceArr[j][i]; 
+                canvasArr[y + j][x + i] = pieceArr[j][i];
                 // fill up the corresponding grids in canvasArr (relative to x,y as the base point)
             }
         }
     }
-    //console.table(canvasArr);
+    console.log(canvasArr);
 }
 
 function collision (canvasArr, pieceArr, x, y){
-    for (let j = 0; j < canvasArr.length; j++){ //y-axis
-        for (let i = 0; i < canvasArr[j].length; i++){ //x-axis
+    for (let j = 0; j < pieceArr.length; j++){ //y-axis
+        for (let i = 0; i < pieceArr[j].length; i++){ //x-axis
             if(
-                y == 17 // y = 1, 
-            ){ // if canvasArr collides with the bottom end,
+                    ((y + pieceArr.length) >= canvasArr.length)     // if piece collides with the bottom end, 
+                ||  (pieceArr[j][i] !== 0 && // check grid where the pieceArr is NOT zero
+                    canvasArr[y+j+1][x+i] !== 0) // and the canvas grid below that is also NOT zero
+                    
+            ){ 
                 lockPiece(canvasArr, pieceArr, x, y);
                 restartPos();
                 draw(pieceArray, posX, posY);
+                return;
             }
         }
     }
 }
 
 function movePiece (dir) {
-    ctx.clearRect(0, 0, 10, 20);
+    ctx.clearRect(0, 0, canvasArray[0].length, canvasArray.length);
     if (dir === "left"){
         if(posX > 0){
             posX--; 
         }
     }
     else if (dir === "up"){
-        if(posY > 0){
+        if(posY >= 0){
             posY--;
         }
     }
     else if (dir === "right"){
-        if(posX < 10){
+        if((posX + pieceArray[0].length) < canvasArray[0].length){
             posX++;
         }
     }
     else if (dir === "down"){
-        if(posY < 20){
+        if(posY < canvasArray.length){
             posY++;
             dropCounter = 0;
         }  
@@ -144,7 +148,7 @@ function movePiece (dir) {
     console.log(dir, 'was pressed', posX, posY);
 
     // lockPiece(canvasArray, pieceArray, posX, posY);
-    draw(canvasArray, 0, 0);
+    draw(canvasArray, 0, 0, alpha=false);
     draw(pieceArray, posX, posY);
     collision(canvasArray, pieceArray, posX, posY);
     
@@ -169,9 +173,10 @@ function update (time = 0) {
 
 
 drawCanvasArray(canvasArray);
+restartPos();
 movePiece();
 //lockPiece(canvasArray, pieceArray);
-console.table(canvasArray);
+//console.table(canvasArray);
 update();
 
 document.addEventListener('keydown', function(event) { //assign function to key input
