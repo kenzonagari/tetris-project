@@ -27,27 +27,9 @@ const canvasArray = createEmptyArray(10,20);
 
 console.log(canvas.width, canvas.height, unitX, unitY, canvasArray.length, canvasArray[0].length );
 
-let pieceArray = [
-        // [1,1],      //O-piece
-        // [1,1],
-        // [0,0,1,0],   //I-piece
-        // [0,0,1,0],
-        // [0,0,1,0],
-        // [0,0,1,0],
-        // [0,1,1],    //S-piece
-        // [1,1,0],
-        // [1,1,0],    //Z-piece
-        // [0,1,1],
-        // [1,0],      //L-piece
-        // [1,0],
-        // [1,1],
-        // [0,1],      //J-piece
-        // [0,1],
-        // [1,1],
-        [0,0,0],
-        [1,1,1],    //T-piece - 0s make space for rotation
-        [0,1,0],
-];
+
+
+let piece = piecesArray[pieceRandomizer()];
 
 function restartPos(){
     posX = 4;
@@ -58,7 +40,7 @@ function draw (arr, offsetX,  offsetY, alpha) {
     for (let j = 0; j < arr.length; j++){ //y-axis
         for (let i = 0; i < arr[j].length; i++){ //x-axis
             if(arr[j][i] !== 0){ //arr[y][x] 
-                ctx.fillStyle = '#D162C8';
+                ctx.fillStyle = piecesColor[arr[j][i]-1];
                 ctx.fillRect(i + offsetX, j + offsetY, 1, 1); //x, y, width, height
             } else if (alpha == false){
                 ctx.fillStyle = 'black';
@@ -66,40 +48,6 @@ function draw (arr, offsetX,  offsetY, alpha) {
             }
         }
     }
-}
-
-function cwRotate(arr){
-
-    let emptyArr = createEmptyArray(arr.length,arr.length);
-
-    for (let j = 0; j < arr.length; j++){ //y-axis
-        for (let i = 0; i < arr[j].length; i++){ //x-axis
-            emptyArr[j][i] = arr[Math.abs(i-(arr.length-1))][j];
-        };
-    }
-
-    arr = emptyArr.map((element) => {
-        return element;
-      });
-
-    return arr;
-}
-
-function ccwRotate(arr){
-
-    let emptyArr = createEmptyArray(arr.length,arr.length);
-    
-    for (let i = 0; i < arr.length; i++){ //y-axis
-        for (let j = 0; j < arr[i].length; j++){ //x-axis
-            emptyArr[j][i] = arr[i][Math.abs(j-(arr.length-1))];
-        };
-    }
-
-    arr = emptyArr.map((element) => {
-        return element;
-      });
-
-    return arr;
 }
 
 function lockPiece (canvasArr, pieceArr, x, y) {
@@ -138,10 +86,8 @@ function horizontalCollision (canvasArr, pieceArr, x, y){
                     ((x+i) >= canvasArr[j].length))     // if piece collides with either left...  
                 ||  (pieceArr[j][i] !== 0 && 
                     ((x+i) < 0))                         // or right wall...
-                ||  (pieceArr[j][i] !== 0 && // check grid where the pieceArr is NOT zero
-                    canvasArr[y+j][x+i] !== 0) // and the canvas grid to the right that is also NOT zero
-                ||  (pieceArr[j][i] !== 0 && // check grid where the pieceArr is NOT zero
-                canvasArr[y+j][x+i] !== 0) // and the canvas grid to the left that is also NOT zero
+                ||  (pieceArr[j][i] !== 0 && // check that the piece will not overlap against itself
+                    canvasArr[y+j][x+i] !== 0)
             ){                 
                 return true;
             }
@@ -155,7 +101,7 @@ function movePiece (dir) {
     
     if (dir === "left"){
         posX--;
-        if ((horizontalCollision(canvasArray, pieceArray, posX, posY)) === true){
+        if ((horizontalCollision(canvasArray, piece, posX, posY)) === true){
         posX++;    
         console.log('horizontal collision');
         }
@@ -169,7 +115,7 @@ function movePiece (dir) {
     
     else if (dir === "right"){
         posX++;
-        if ((horizontalCollision(canvasArray, pieceArray, posX, posY)) === true){
+        if ((horizontalCollision(canvasArray, piece, posX, posY)) === true){
             console.log('horizontal collision');
             posX--;
         }
@@ -184,22 +130,103 @@ function movePiece (dir) {
     
     console.log(dir, 'was pressed', posX, posY);
 
-    // lockPiece(canvasArray, pieceArray, posX, posY);
+    // lockPiece(canvasArray, piece, posX, posY);
     draw(canvasArray, 0, 0, alpha=false);
-    draw(pieceArray, posX, posY);
+    draw(piece, posX, posY);
 
-    if (collision(canvasArray, pieceArray, posX, posY)){
-        lockPiece(canvasArray, pieceArray, posX, posY);
-        restartPos();
-        //restartPiece(pieceArray);
-        draw(pieceArray, posX, posY);
+    if (collision(canvasArray, piece, posX, posY)){
+        lockDelay();
         console.log("collision!");
+        lockPiece(canvasArray, piece, posX, posY);
+        piece = piecesArray[pieceRandomizer()];
+        restartPos();
+        draw(piece, posX, posY);
     };
     
 }
 
+function lockDelay () {
+    setTimeout(() => {
+        console.log('oh....hai!');
+      }, 1000)
+}
+
+function cwRotate(arr){
+
+    let emptyArr = createEmptyArray(arr.length,arr.length);
+
+    for (let j = 0; j < arr.length; j++){ //y-axis
+        for (let i = 0; i < arr[j].length; i++){ //x-axis
+            emptyArr[j][i] = arr[Math.abs(i-(arr.length-1))][j];
+        };
+    }
+
+    arr = emptyArr.map((element) => {
+        return element;
+      });
+
+    return arr;
+}
+
+function ccwRotate(arr){
+
+    let emptyArr = createEmptyArray(arr.length,arr.length);
+    
+    for (let i = 0; i < arr.length; i++){ //y-axis
+        for (let j = 0; j < arr[i].length; j++){ //x-axis
+            emptyArr[j][i] = arr[i][Math.abs(j-(arr.length-1))];
+        };
+    }
+
+    arr = emptyArr.map((element) => {
+        return element;
+      });
+
+    return arr;
+}
+
+function rotatePiece(dir){
+
+    if(dir === 'cw'){
+        piece = cwRotate(piece);
+        if((horizontalCollision(canvasArray, piece, (posX), posY)) === true){
+            piece = ccwRotate(piece);
+            console.log("can't. stuck.") 
+        }
+    } else if (dir === 'ccw'){
+        piece = ccwRotate(piece);
+        if((horizontalCollision(canvasArray, piece, (posX), posY)) === true){
+        piece = cwRotate(piece);
+        console.log("can't. stuck.") 
+        }
+    }
+    movePiece();
+}
+
+document.addEventListener('keydown', function(event) { //assign function to key input
+    if(posY !== -1){
+        if(event.keyCode == 88) { //x-key
+            rotatePiece('cw');
+        }
+        else if(event.keyCode == 90) { //z-key
+            rotatePiece('ccw');
+        }
+    
+        if(event.keyCode == 37) { //LEFT
+            movePiece("left");
+        } 
+        else if(event.keyCode == 39) { //RIGHT
+            movePiece("right");
+        }
+        else if(event.keyCode == 40) { //DOWN
+            movePiece("down");
+        }
+    }
+
+});
+
 let dropCounter = 0;
-let dropInterval = 500;
+let dropInterval = 2000;
 let lastTime = 0;
 
 function update (time = 0) {
@@ -209,7 +236,7 @@ function update (time = 0) {
     dropCounter += deltaTime;
 
     if(dropCounter > dropInterval){        
-        //movePiece("down");
+        movePiece("down");
     }
     requestAnimationFrame(update);
 }
@@ -217,32 +244,3 @@ function update (time = 0) {
 restartPos();
 movePiece();
 update();
-
-function rotatePiece(dir){
-    if(dir === 'cw'){
-        pieceArray = cwRotate(pieceArray);
-    } else if (dir === 'ccw'){
-        pieceArray = ccwRotate(pieceArray);
-    }
-    movePiece();
-}
-
-document.addEventListener('keydown', function(event) { //assign function to key input
-    if(event.keyCode == 88) { //x-key
-        rotatePiece('cw');
-    }
-    else if(event.keyCode == 90) { //z-key
-        rotatePiece('ccw');
-    }
-
-    if(event.keyCode == 37) { //LEFT
-        movePiece("left");
-    } 
-    else if(event.keyCode == 39) { //RIGHT
-        movePiece("right");
-    }
-    else if(event.keyCode == 40) { //DOWN
-        movePiece("down");
-    }
-
-});
