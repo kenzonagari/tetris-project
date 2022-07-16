@@ -54,7 +54,7 @@ function drawCanvasArray (arr) { //draw transparent grid based on the argument a
     }
 }
 
-const pieceArray = [
+let pieceArray = [
         // [1,1],      //O-piece
         // [1,1],
         // [1,1,1,1],   //I-piece
@@ -74,8 +74,8 @@ const pieceArray = [
 ];
 
 function restartPos(){
-    posX=4;
-    posY=-1;
+    posX = 4;
+    posY = -1;
 }
 
 function draw (arr, offsetX,  offsetY, alpha) {
@@ -90,6 +90,38 @@ function draw (arr, offsetX,  offsetY, alpha) {
             }
         }
     }
+}
+
+function cwRotate(arr){
+    let emptyArr = [[0,0,0],[0,0,0],[0,0,0],]
+    for (let j = 0; j < arr.length; j++){ //y-axis
+        for (let i = 0; i < arr[j].length; i++){ //x-axis
+            emptyArr[j][i] = arr[Math.abs(i-(arr.length-1))][j];
+        };
+    }
+
+    arr = emptyArr.map((element) => {
+        return element;
+      });
+
+    return arr;
+}
+
+function ccwRotate(arr){
+
+    let emptyArr = [[0,0,0],[0,0,0],[0,0,0],]
+    
+    for (let i = 0; i < arr.length; i++){ //y-axis
+        for (let j = 0; j < arr[i].length; j++){ //x-axis
+            emptyArr[j][i] = arr[i][Math.abs(j-(arr.length-1))];
+        };
+    }
+
+    arr = emptyArr.map((element) => {
+        return element;
+      });
+
+    return arr;
 }
 
 function lockPiece (canvasArr, pieceArr, x, y) {
@@ -108,7 +140,8 @@ function collision (canvasArr, pieceArr, x, y){
     for (let j = 0; j < pieceArr.length; j++){ //y-axis
         for (let i = 0; i < pieceArr[j].length; i++){ //x-axis
             if(
-                    ((y + pieceArr.length) >= canvasArr.length)     // if piece collides with the bottom end, 
+                    (pieceArr[j][i] !== 0 && 
+                    ((y+j+1) >= canvasArr.length))     // if piece collides with the bottom end, 
                 ||  (pieceArr[j][i] !== 0 && // check grid where the pieceArr is NOT zero
                     canvasArr[y+j+1][x+i] !== 0) // and the canvas grid below that is also NOT zero
                     
@@ -175,21 +208,28 @@ function update (time = 0) {
 drawCanvasArray(canvasArray);
 restartPos();
 movePiece();
-//lockPiece(canvasArray, pieceArray);
 //console.table(canvasArray);
 update();
 
 document.addEventListener('keydown', function(event) { //assign function to key input
     if(event.keyCode == 37) { //LEFT
         movePiece("left");
-    }
-    else if(event.keyCode == 38) { //UP
-        movePiece("up");
-    }
+    } 
     else if(event.keyCode == 39) { //RIGHT
         movePiece("right");
     }
     else if(event.keyCode == 40) { //DOWN
         movePiece("down");
+    }
+});
+
+document.addEventListener('keydown', function(event) { //assign function to key input
+    if(event.keyCode == 88) { //x-key
+        pieceArray = cwRotate(pieceArray);
+        movePiece();
+    }
+    else if(event.keyCode == 90) { //z-key
+        pieceArray = ccwRotate(pieceArray);
+        movePiece();
     }
 });
