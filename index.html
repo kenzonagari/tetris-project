@@ -5,19 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tetris Project</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+        crossorigin="anonymous">
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <p>
-        Tetris - shittier version
+        Tetris - JS
     </p>
     
     <div id="canvasesdiv" style="position:relative; width:400px; height:300px">
 
     <div id = "container">
-        <canvas id="grid-bg"></canvas>
+        <canvas class="drop-shadow" id="grid-bg"></canvas>
         <canvas class="drop-shadow" id="grid" ></canvas>
+        <div id="container-info">
+            <div class="drop-shadow" id="score">Score:<br>0</div>
+            <div class="drop-shadow" id="line-count">Line Count:<br>0</div>
+        </div>
+
     </div>
     
     </div>
@@ -25,6 +34,7 @@
 
     <script src="tetriminoes.js"></script>
     <script src="tetris.js"></script>
+    <script src="tetris-scoring.js"></script>
     <script src="tetris-grid.js"></script>
 </body>
 

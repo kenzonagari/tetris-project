@@ -1,3 +1,5 @@
+// console.log($);
+
 const canvas = document.getElementById('grid');
 const ctx = canvas.getContext('2d');
 
@@ -10,6 +12,7 @@ const unitY = canvas.height/20; //width-height of one grid in px
 
 let posX=0;
 let posY=0;
+let level = 1;
 
 ctx.scale(unitX,unitY); //* scales up the current drawing
 
@@ -33,7 +36,7 @@ let piece = piecesArray[pieceRandomizer()];
 
 function restartPos(){
     posX = 4;
-    posY = 0;
+    posY = -1;
 }
 
 function draw (arr, offsetX,  offsetY, alpha) {
@@ -59,7 +62,7 @@ function lockPiece (canvasArr, pieceArr, x, y) {
             }
         }
     }
-    console.log(canvasArr);
+    //console.log(canvasArr);
 }
 
 function collision (canvasArr, pieceArr, x, y){
@@ -135,14 +138,41 @@ function movePiece (dir) {
     draw(piece, posX, posY);
 
     if (collision(canvasArray, piece, posX, posY)){
-        lockDelay();
+        
+        //lockDelay();
         console.log("collision!");
         lockPiece(canvasArray, piece, posX, posY);
+        
+        lineClear(canvasArray);
+        
         piece = piecesArray[pieceRandomizer()];
         restartPos();
         draw(piece, posX, posY);
     };
     
+}
+
+function lineClear (canvasArr) {
+    let rowCheck = 0;
+    let lineAmount = 0;
+    for(let j = 0; j < canvasArr.length ; j++){
+        rowCheck = 0;
+        for(let i = 0; i < canvasArr[j].length ; i++){
+            if(canvasArr[j][i] !== 0){
+                rowCheck++;
+            }
+            if(rowCheck === 10){
+                canvasArr.splice(j,1);
+                canvasArr.unshift([0,0,0,0,0,0,0,0,0,0]);
+                lineAmount++;
+            }
+        }
+    }
+
+    score(lineAmount);
+    lineCount(lineAmount);
+
+    return canvasArr;
 }
 
 function lockDelay () {
@@ -203,30 +233,29 @@ function rotatePiece(dir){
     movePiece();
 }
 
-document.addEventListener('keydown', function(event) { //assign function to key input
+$(document).keydown(function (event) {
     if(posY !== -1){
-        if(event.keyCode == 88) { //x-key
+        if(event.which === 88) { //x-key
             rotatePiece('cw');
         }
-        else if(event.keyCode == 90) { //z-key
+        else if(event.which === 90) { //z-key
             rotatePiece('ccw');
         }
     
-        if(event.keyCode == 37) { //LEFT
+        if(event.which === 37) { //LEFT
             movePiece("left");
         } 
-        else if(event.keyCode == 39) { //RIGHT
+        else if(event.which === 39) { //RIGHT
             movePiece("right");
         }
-        else if(event.keyCode == 40) { //DOWN
+        else if(event.which === 40) { //DOWN
             movePiece("down");
         }
     }
-
 });
 
 let dropCounter = 0;
-let dropInterval = 2000;
+let dropInterval = 250;
 let lastTime = 0;
 
 function update (time = 0) {

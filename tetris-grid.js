@@ -26,3 +26,4 @@ function drawCanvasArray (arr) { //draw transparent grid based on the argument a
 }
 
 drawCanvasArray(canvasArray);
+

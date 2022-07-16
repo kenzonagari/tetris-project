@@ -1,9 +1,6 @@
 body {
-    background: rgb(30, 38, 66);
-}
-
-p {
-    font-family: sans-serif;
+    background: #0b0b0d;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 15px;
     color: aliceblue;
 }
@@ -12,10 +9,20 @@ p {
     position:absolute;
     left:0px;
     top:0px;
+    align-items: center;
 }
 
 #container {
-    transform: scale(0.75);
+    transform: scale(0.65);
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    width: 100%;
+}
+
+#container-info{
+    position: relative;
+    left: 35%;
 }
 
 canvas {
@@ -29,12 +36,43 @@ canvas {
     border-radius: 15px;
     z-index: 2;
     opacity: 15%;
-    mix-blend-mode: normal;
+    mix-blend-mode:difference;
 }
 
 #grid {
     border-radius: 15px;
     z-index: 1;
+}
+
+#score {
+    background: black;
+    width: 300px;
+    height: 100px;
+    border-radius: 15px;
+    position: relative;
+    left: 140%;
+    color: white;
+    font-size: 2em;
+    text-align:center;
+    vertical-align: middle;
+    line-height: 42px; 
+}
+
+#line-count{
+
+    background: black;
+    width: 300px;
+    height: 100px;
+    border-radius: 15px;
+    position: relative;
+    top: 15%;
+    left: 140%;
+    color: white;
+    font-size: 2em;
+    text-align:center;
+    vertical-align: middle;
+    line-height: 42px; 
+
 }
 
 .drop-shadow{
@@ -43,4 +81,6 @@ canvas {
                 0 6px 15px rgba(179, 179, 179, 0.1), 
                 0 8px 20px rgba(255, 255, 255, 0.1),
                 0 12px 25px rgba(255, 255, 255, 0.1);
+    border: 5px solid rgb(135, 131, 109);
+    border-style:inset;
 }
