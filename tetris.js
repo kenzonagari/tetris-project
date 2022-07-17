@@ -15,15 +15,6 @@ let posY=0;
 
 ctx.scale(unitX,unitY); //* scales up the current drawing
 
-function createEmptyArray (w, h) {
-    let arr = [];
-
-    for (let i = 0 ; i < h ; i++){
-        arr.push(new Array(w).fill(0))
-    }
-
-    return arr;
-}
 
 let canvasArray = createEmptyArray(10,20);
 
@@ -234,19 +225,21 @@ function rotatePiece(dir){
             piece = ccwRotate(piece);
             console.log("can't. stuck.") 
         }
+        movePiece('x');
     } else if (dir === 'ccw'){
         piece = ccwRotate(piece);
         if((horizontalCollision(canvasArray, piece, (posX), posY)) === true){
         piece = cwRotate(piece);
         console.log("can't. stuck.") 
         }
+        movePiece('z');
     }
-    movePiece();
+    
 }
 
 function gameOver () {
     if(posY <= 1){
-        console.log("game over!");
+        alert("game over!");
         ctx.clearRect(0, 0, canvasArray[0].length, canvasArray.length);
         canvasArray = createEmptyArray(10,20);
         scoreReset();

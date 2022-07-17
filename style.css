@@ -93,3 +93,28 @@ canvas {
                 0 12px 25px rgba(255, 255, 255, 0.1);
 
 }
+
+#container-next-piece{
+    flex-basis: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    transform: scale(0.90);
+}
+
+
+
+.piece-square{
+    background:rgb(255, 140, 0);
+    width: 50px;
+    height: 50px;
+    margin: 0 0;
+}
+
+.blank{
+    width: 50px;
+    height: 50px;
+    opacity: 0%;
+}
+

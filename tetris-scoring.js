@@ -63,7 +63,7 @@ function logLevel (num) {
 }
 
 function levelUp () {
-    let timer = 1000/(Math.floor(totalLine/10)+1);
+    let timer = 2000/(Math.floor(totalLine/10)+1);
     return timer;
 }
 
