@@ -1,3 +1,5 @@
+// console.log($);
+
 const canvas = document.getElementById('grid');
 const ctx = canvas.getContext('2d');
 
@@ -23,17 +25,32 @@ function createEmptyArray (w, h) {
     return arr;
 }
 
-const canvasArray = createEmptyArray(10,20);
+let canvasArray = createEmptyArray(10,20);
 
 console.log(canvas.width, canvas.height, unitX, unitY, canvasArray.length, canvasArray[0].length );
 
 
 
-let piece = piecesArray[pieceRandomizer()];
+let piece = piecesArray[0];
 
-function restartPos(){
-    posX = 4;
+function restartPiece(){
+
+    setLevel();
+    
+    piece = piecesArray[pieceRandomizer()];
+    posX = 3;
     posY = 0;
+
+    if(piece[1][1] === 1){ //different y start for I piece
+        posY = -1;
+    } 
+    
+    if(piece[1][1] === 4) { //different x start for O piece
+        posX = 4; 
+    }
+
+    draw(canvasArray, 0, 0, alpha=false);
+    draw(piece, posX, posY);
 }
 
 function draw (arr, offsetX,  offsetY, alpha) {
@@ -59,7 +76,7 @@ function lockPiece (canvasArr, pieceArr, x, y) {
             }
         }
     }
-    console.log(canvasArr);
+    //console.log(canvasArr);
 }
 
 function collision (canvasArr, pieceArr, x, y){
@@ -97,7 +114,7 @@ function horizontalCollision (canvasArr, pieceArr, x, y){
 }
 
 function movePiece (dir) {
-    ctx.clearRect(0, 0, canvasArray[0].length, canvasArray.length);
+    ctx.clearRect(0, 0, canvasArray[0].length, canvasArray.length);  
     
     if (dir === "left"){
         posX--;
@@ -130,19 +147,43 @@ function movePiece (dir) {
     
     console.log(dir, 'was pressed', posX, posY);
 
-    // lockPiece(canvasArray, piece, posX, posY);
     draw(canvasArray, 0, 0, alpha=false);
     draw(piece, posX, posY);
 
-    if (collision(canvasArray, piece, posX, posY)){
-        lockDelay();
-        console.log("collision!");
+    if (collision(canvasArray, piece, posX, posY)){ 
+        //lockDelay();
+        logScore(totalScore); //scores from soft drop
+        
+        console.log("collision! Drop interval:", dropInterval, "level:", level);
         lockPiece(canvasArray, piece, posX, posY);
-        piece = piecesArray[pieceRandomizer()];
-        restartPos();
-        draw(piece, posX, posY);
+        gameOver();
+        lineClear(canvasArray);
+        
+        restartPiece();
     };
-    
+}
+
+function lineClear (canvasArr) {
+    let rowCheck = 0;
+    let lineAmount = 0;
+    for(let j = 0; j < canvasArr.length ; j++){
+        rowCheck = 0;
+        for(let i = 0; i < canvasArr[j].length ; i++){
+            if(canvasArr[j][i] !== 0){
+                rowCheck++;
+            }
+            if(rowCheck === 10){
+                canvasArr.splice(j,1);
+                canvasArr.unshift([0,0,0,0,0,0,0,0,0,0]);
+                lineAmount++;
+            }
+        }
+    }
+
+    score(lineAmount);
+    lineCount(lineAmount);
+
+    return canvasArr;
 }
 
 function lockDelay () {
@@ -203,30 +244,41 @@ function rotatePiece(dir){
     movePiece();
 }
 
-document.addEventListener('keydown', function(event) { //assign function to key input
+function gameOver () {
+    if(posY <= 1){
+        console.log("game over!");
+        ctx.clearRect(0, 0, canvasArray[0].length, canvasArray.length);
+        canvasArray = createEmptyArray(10,20);
+        scoreReset();
+    }
+}
+
+$(document).keydown(function (event) {
     if(posY !== -1){
-        if(event.keyCode == 88) { //x-key
+        if(event.which === 88) { //x-key
             rotatePiece('cw');
         }
-        else if(event.keyCode == 90) { //z-key
+        else if(event.which === 90) { //z-key
             rotatePiece('ccw');
         }
+    }
     
-        if(event.keyCode == 37) { //LEFT
+    
+        if(event.which === 37) { //LEFT
             movePiece("left");
         } 
-        else if(event.keyCode == 39) { //RIGHT
+        else if(event.which === 39) { //RIGHT
             movePiece("right");
         }
-        else if(event.keyCode == 40) { //DOWN
+        else if(event.which === 40) { //DOWN
+            dropdownScore();
             movePiece("down");
         }
-    }
 
 });
 
 let dropCounter = 0;
-let dropInterval = 2000;
+let dropInterval = levelUp();
 let lastTime = 0;
 
 function update (time = 0) {
@@ -234,6 +286,7 @@ function update (time = 0) {
     lastTime = time;
     //console.log(deltaTime);
     dropCounter += deltaTime;
+    dropInterval = levelUp();
 
     if(dropCounter > dropInterval){        
         movePiece("down");
@@ -241,6 +294,6 @@ function update (time = 0) {
     requestAnimationFrame(update);
 }
 
-restartPos();
+restartPiece();
 movePiece();
 update();
