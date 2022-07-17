@@ -12,7 +12,6 @@ const unitY = canvas.height/20; //width-height of one grid in px
 
 let posX=0;
 let posY=0;
-let level = 1;
 
 ctx.scale(unitX,unitY); //* scales up the current drawing
 
@@ -26,17 +25,30 @@ function createEmptyArray (w, h) {
     return arr;
 }
 
-const canvasArray = createEmptyArray(10,20);
+let canvasArray = createEmptyArray(10,20);
 
 console.log(canvas.width, canvas.height, unitX, unitY, canvasArray.length, canvasArray[0].length );
 
 
 
-let piece = piecesArray[pieceRandomizer()];
+let piece = piecesArray[0];
 
-function restartPos(){
-    posX = 4;
-    posY = -1;
+function restartPiece(){
+    
+    piece = piecesArray[pieceRandomizer()];
+    posX = 3;
+    posY = 0;
+
+    if(piece[1][1] === 1){ //different y start for I piece
+        posY = -1;
+    } 
+    
+    if(piece[1][1] === 4) { //different x start for O piece
+        posX = 4; 
+    }
+
+    draw(canvasArray, 0, 0, alpha=false);
+    draw(piece, posX, posY);
 }
 
 function draw (arr, offsetX,  offsetY, alpha) {
@@ -100,7 +112,7 @@ function horizontalCollision (canvasArr, pieceArr, x, y){
 }
 
 function movePiece (dir) {
-    ctx.clearRect(0, 0, canvasArray[0].length, canvasArray.length);
+    ctx.clearRect(0, 0, canvasArray[0].length, canvasArray.length);  
     
     if (dir === "left"){
         posX--;
@@ -133,7 +145,6 @@ function movePiece (dir) {
     
     console.log(dir, 'was pressed', posX, posY);
 
-    // lockPiece(canvasArray, piece, posX, posY);
     draw(canvasArray, 0, 0, alpha=false);
     draw(piece, posX, posY);
 
@@ -142,14 +153,12 @@ function movePiece (dir) {
         //lockDelay();
         console.log("collision!");
         lockPiece(canvasArray, piece, posX, posY);
+        gameOver();
         
         lineClear(canvasArray);
         
-        piece = piecesArray[pieceRandomizer()];
-        restartPos();
-        draw(piece, posX, posY);
+        restartPiece();
     };
-    
 }
 
 function lineClear (canvasArr) {
@@ -233,6 +242,15 @@ function rotatePiece(dir){
     movePiece();
 }
 
+function gameOver () {
+    if(posY <= 1){
+        console.log("game over!");
+        ctx.clearRect(0, 0, canvasArray[0].length, canvasArray.length);
+        canvasArray = createEmptyArray(10,20);
+        scoreReset();
+    }
+}
+
 $(document).keydown(function (event) {
     if(posY !== -1){
         if(event.which === 88) { //x-key
@@ -241,6 +259,8 @@ $(document).keydown(function (event) {
         else if(event.which === 90) { //z-key
             rotatePiece('ccw');
         }
+    }
+    
     
         if(event.which === 37) { //LEFT
             movePiece("left");
@@ -249,13 +269,14 @@ $(document).keydown(function (event) {
             movePiece("right");
         }
         else if(event.which === 40) { //DOWN
+            // dropdownScore();
             movePiece("down");
         }
-    }
+
 });
 
 let dropCounter = 0;
-let dropInterval = 250;
+let dropInterval = 2000;
 let lastTime = 0;
 
 function update (time = 0) {
@@ -270,6 +291,6 @@ function update (time = 0) {
     requestAnimationFrame(update);
 }
 
-restartPos();
+restartPiece();
 movePiece();
 update();

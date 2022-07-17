@@ -6,14 +6,20 @@ body {
 }
 
 #canvasesdiv {
-    position:absolute;
-    left:0px;
-    top:0px;
-    align-items: center;
+    display: flex;
+    width:500px; 
+    height:250px;
+    position: absolute;
+    margin: 5px auto;
+}
+
+p{
+    width: 250px;
+    padding: 10px;
 }
 
 #container {
-    transform: scale(0.65);
+    transform: scale(0.66);
     display: flex;
     flex-direction: row;
     margin: 0 auto;
@@ -21,7 +27,7 @@ body {
 }
 
 #container-info{
-    position: relative;
+    position: absolute;
     left: 35%;
 }
 
@@ -44,7 +50,7 @@ canvas {
     z-index: 1;
 }
 
-#score {
+.sidebox{
     background: black;
     width: 300px;
     height: 100px;
@@ -56,24 +62,23 @@ canvas {
     text-align:center;
     vertical-align: middle;
     line-height: 42px; 
+    margin: 10%;
+}
+
+#score {
+    left: 140%;
 }
 
 #line-count{
-
-    background: black;
-    width: 300px;
-    height: 100px;
-    border-radius: 15px;
-    position: relative;
-    top: 15%;
-    left: 140%;
-    color: white;
-    font-size: 2em;
-    text-align:center;
-    vertical-align: middle;
-    line-height: 42px; 
-
+    top: 10%;
 }
+
+#next-piece{
+    top: 20%;
+    height: 250px;
+}
+
+
 
 .drop-shadow{
     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.12), 
@@ -81,6 +86,6 @@ canvas {
                 0 6px 15px rgba(179, 179, 179, 0.1), 
                 0 8px 20px rgba(255, 255, 255, 0.1),
                 0 12px 25px rgba(255, 255, 255, 0.1);
-    border: 5px solid rgb(135, 131, 109);
+    border: 5px solid rgb(99, 96, 76);
     border-style:inset;
 }
