@@ -1,3 +1,5 @@
+//! DRAW CANVAS GRID LINES (to be overlaid on the actual game canvas)
+
 const canvas1 = document.getElementById('grid-bg');
 const ctx1 = canvas1.getContext('2d');
 
@@ -26,4 +28,7 @@ function drawCanvasArray (arr) { //draw transparent grid based on the argument a
 }
 
 drawCanvasArray(canvasArray);
+
+//-----------------------------------------------
+
 

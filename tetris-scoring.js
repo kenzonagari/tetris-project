@@ -39,14 +39,14 @@ function scoreReset () {
 
 function logScore (num) {
     const $score = $('#score');
-    $score.html(`Score:<br>${num}`);
+    $score.html(`SCORE<br>${num}`);
 
     return;
 }
 
 function logLineCount (num) {
     const $lineCount = $('#line-count');
-    $lineCount.html(`Line Count:<br>${num}`);
+    $lineCount.html(`LINES<br>${num}`);
 
     return;
 }
@@ -58,12 +58,12 @@ function setLevel() {
 
 function logLevel (num) {
     const $level = $('#level');
-    $level.html(`Level:<br>${num}`);
+    $level.html(`LEVEL<br>${num}`);
     return;
 }
 
 function levelUp () {
-    let timer = 1000/(Math.floor(totalLine/10)+1);
+    let timer = 2000/(Math.floor(totalLine/10)+1);
     return timer;
 }
 

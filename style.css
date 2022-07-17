@@ -2,7 +2,7 @@ body {
     background: #0b0b0d;
     font-family: 'Press Start 2P', cursive;
     font-size: 10px;
-    color: aliceblue;
+    color:rgb(255, 243, 228);
 }
 
 #canvasesdiv {
@@ -15,7 +15,7 @@ body {
 
 p{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: large;
+    font-size: 25px;
     width: 250px;
     padding: 10px;
 }
@@ -38,18 +38,21 @@ canvas {
     height:1000px;
     border:0px solid #000;
     position: absolute;
+    /* border: 0px solid rgb(99, 96, 76);
+    border-style:inset; */
 }
 
 #grid-bg {
     border-radius: 15px;
-    z-index: 2;
-    opacity: 15%;
-    mix-blend-mode:difference;
+    z-index: 1;
+    opacity: 5%;
+    
 }
 
 #grid {
     border-radius: 15px;
-    z-index: 1;
+    z-index: 2;
+    mix-blend-mode: overlay;
 }
 
 .sidebox{
@@ -59,7 +62,7 @@ canvas {
     border-radius: 15px;
     position: relative;
     left: 140%;
-    color: white;
+    /* color: white; */
     font-size: 2em;
     text-align:center;
     vertical-align: middle;
@@ -88,6 +91,30 @@ canvas {
                 0 6px 15px rgba(179, 179, 179, 0.1), 
                 0 8px 20px rgba(255, 255, 255, 0.1),
                 0 12px 25px rgba(255, 255, 255, 0.1);
-    border: 5px solid rgb(99, 96, 76);
-    border-style:inset;
+
 }
+
+#container-next-piece{
+    flex-basis: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    transform: scale(0.90);
+}
+
+
+
+.piece-square{
+    background:rgb(255, 140, 0);
+    width: 50px;
+    height: 50px;
+    margin: 0 0;
+}
+
+.blank{
+    width: 50px;
+    height: 50px;
+    opacity: 0%;
+}
+

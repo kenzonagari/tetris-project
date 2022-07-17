@@ -29,17 +29,21 @@
         <canvas class="drop-shadow" id="grid-bg"></canvas>
         <canvas class="drop-shadow" id="grid" ></canvas>
         <div id="container-info">
-            <div class="sidebox drop-shadow" id="score">Score:<br>0</div>
-            <div class="sidebox drop-shadow" id="line-count">Line Count:<br>0</div>
-            <div class="sidebox drop-shadow" id="level">Level:<br>0</div>
-            <div class="sidebox drop-shadow" id="next-piece">Next Piece: <br></div>
+            <div class="sidebox drop-shadow" id="score">SCORE<br>0</div>
+            <div class="sidebox drop-shadow" id="line-count">LINES<br>0</div>
+            <div class="sidebox drop-shadow" id="level">LEVEL<br>0</div>
+            <div class="sidebox drop-shadow" id="next-piece">
+                NEXT PIECE<br>
+                <div id="container-next-piece">
+                </div>
+            </div>
         </div>
 
     </div>
     
     </div>
     
-
+    <script src="array-generator.js"></script>
     <script src="tetriminoes.js"></script>
     <script src="tetris-scoring.js"></script>
     <script src="tetris.js"></script>
