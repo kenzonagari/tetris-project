@@ -28,9 +28,24 @@ const piecesArray = [
     [0,0,0]]
 ];
 
-const piecesColor = ['#00ffff', '#0000ff', '#ff7f00', '#ffff00', '#00ff00', '#800080', '#ff0000'];
+const piecesColor = ['#72C1F5', '#096CAF', '#E07E20', '#ffd350', '#a7c64f', '#a43e6f', '#c84c52'];
+
+let temp = Math.floor(Math.random()*7);
 
 function pieceRandomizer(){
-    let randomNum = Math.floor(Math.random()*7);
+    
+    let randomNum = 0;
+    randomNum = temp;
+
+    let randomNum2 = Math.floor(Math.random()*7);
+    temp = randomNum2;
+
+    logRandomPiece(piecesArray[temp]);
     return randomNum;
+}
+
+function logRandomPiece(num){
+    $nextPiece = $('#next-piece');
+    $nextPiece.html(`NEXT PIECE<br>${num}`)
+    return;
 }
