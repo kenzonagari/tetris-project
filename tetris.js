@@ -34,6 +34,8 @@ console.log(canvas.width, canvas.height, unitX, unitY, canvasArray.length, canva
 let piece = piecesArray[0];
 
 function restartPiece(){
+
+    setLevel();
     
     piece = piecesArray[pieceRandomizer()];
     posX = 3;
@@ -148,13 +150,13 @@ function movePiece (dir) {
     draw(canvasArray, 0, 0, alpha=false);
     draw(piece, posX, posY);
 
-    if (collision(canvasArray, piece, posX, posY)){
-        
+    if (collision(canvasArray, piece, posX, posY)){ 
         //lockDelay();
-        console.log("collision!");
+        logScore(totalScore); //scores from soft drop
+        
+        console.log("collision! Drop interval:", dropInterval, "level:", level);
         lockPiece(canvasArray, piece, posX, posY);
         gameOver();
-        
         lineClear(canvasArray);
         
         restartPiece();
@@ -269,14 +271,14 @@ $(document).keydown(function (event) {
             movePiece("right");
         }
         else if(event.which === 40) { //DOWN
-            // dropdownScore();
+            dropdownScore();
             movePiece("down");
         }
 
 });
 
 let dropCounter = 0;
-let dropInterval = 2000;
+let dropInterval = levelUp();
 let lastTime = 0;
 
 function update (time = 0) {
@@ -284,6 +286,7 @@ function update (time = 0) {
     lastTime = time;
     //console.log(deltaTime);
     dropCounter += deltaTime;
+    dropInterval = levelUp();
 
     if(dropCounter > dropInterval){        
         movePiece("down");
