@@ -1,2 +1,2 @@
 # tetris-project
-Simple Tetris build using Vanilla JavaScript + HTML + CSS
+Simple Tetris build using JavaScript + jQuery + HTML + CSS
