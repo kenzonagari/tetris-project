@@ -7,6 +7,7 @@ body {
 
 #canvasesdiv {
     display: flex;
+    flex-direction: row;
     width:500px; 
     height:250px;
     position: absolute;
@@ -14,10 +15,23 @@ body {
 }
 
 p{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 25px;
+    font-size: 14px;
+    width: 500px;
+    padding: 10px;
+}
+
+.instruction {
+    display: block;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-stretch: narrower;
+    text-align: center;
+    line-height: 2em;
     width: 250px;
     padding: 10px;
+    margin: 10px;
+    border: 2px solid rgb(120, 120, 120);
+    border-radius: 20px ;
 }
 
 #container {
@@ -30,7 +44,8 @@ p{
 
 #container-info{
     position: absolute;
-    left: 35%;
+    top: -5%;
+    left: -170%;
 }
 
 canvas {
@@ -45,7 +60,7 @@ canvas {
 #grid-bg {
     border-radius: 15px;
     z-index: 1;
-    opacity: 5%;
+    opacity: 10%;
     
 }
 
@@ -67,7 +82,33 @@ canvas {
     text-align:center;
     vertical-align: middle;
     line-height: 42px; 
+    margin: 5%;
+}
+
+.buttons{
+    width: 600px;
+    position: relative;
+    left: 133%;
     margin: 10%;
+}
+
+.button{
+    width: 80px;
+    height: 80px;
+    font-size: 20px;
+    font-family: 'Press Start 2P', cursive;
+    color:rgb(255, 243, 228);
+    background-color: #000;
+    border-radius: 15px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all ease 0.2s;
+}
+
+.button:hover{
+    color:black;
+    background-color: rgb(223, 224, 224);
+    transform: translateY(-5px);
 }
 
 #score {

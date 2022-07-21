@@ -1,5 +1,9 @@
+//-----------------------------------------------//
+//! 
+
 let totalScore = 0;
 let totalLine = 0;
+let startingLevel = 0;
 let level = 0;
 const scoreScheme = [(40 * (level + 1)), (100 * (level + 1)), (300 * (level + 1)),	(1200 * (level + 1))];
 
@@ -9,15 +13,16 @@ function score (lineNum) {
         totalScore += score;
         logScore(totalScore);
     }
-    return;
 }
 
 function dropdownScore () {
+    let dropdownValue = 0;
     if(level == 0){
-        level = 1;
+        dropdownValue = 1;
+    } else {
+        dropdownValue = level;
     }
-    totalScore = totalScore + (1*level);
-    return;
+    totalScore += dropdownValue;
 }
 
 function lineCount (lineNum) {
@@ -25,7 +30,6 @@ function lineCount (lineNum) {
         totalLine += lineNum;
         logLineCount(totalLine);
     }
-    return;
 }
 
 function scoreReset () {
@@ -33,37 +37,30 @@ function scoreReset () {
     totalLine = 0;
     logScore(totalScore);
     logLineCount(totalLine);
-
-    return;
 }
 
 function logScore (num) {
     const $score = $('#score');
     $score.html(`SCORE<br>${num}`);
-
-    return;
 }
 
 function logLineCount (num) {
     const $lineCount = $('#line-count');
     $lineCount.html(`LINES<br>${num}`);
-
-    return;
 }
 
 function setLevel() {
-    level = Math.floor(totalLine/10);
+    level = Math.floor(totalLine/10) + startingLevel;
     logLevel(level);    
 }
 
 function logLevel (num) {
     const $level = $('#level');
     $level.html(`LEVEL<br>${num}`);
-    return;
 }
 
-function levelUp () {
-    let timer = 2000/(Math.floor(totalLine/10)+1);
+function levelUpTimer () {
+    let timer = 2000/(level+1);
     return timer;
 }
 
