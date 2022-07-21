@@ -1,3 +1,6 @@
+//-----------------------------------------------//
+//! Initialize piecesArray
+
 const piecesArray = [
     [[0,0,0,0],   //I-piece
     [1,1,1,1],
@@ -44,6 +47,7 @@ function pieceRandomizer(){
     temp = randomNum2;
 
     logNextPiece(piecesNextGrid[temp]);
+    
     return randomNum;
 }
 
@@ -107,6 +111,4 @@ function logNextPiece(arr){
                 }
         }
     }
-
-    return;
 }

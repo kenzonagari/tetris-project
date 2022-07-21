@@ -20,10 +20,20 @@
     <div id="canvasesdiv">
 
     <p>
-        Tetris.js <br>
-        Kenzo <br>
-        GA SEIF10 - Project 1 
+        TETRIS.JS <br>
+        by KENZO <br><br>
+        GA SEIF10 - Project 1 <br><br><br>
+        <span class="instruction">
+        move left | left arrow <br>
+        move right | right arrow <br>
+        move down | down arrow <br>
+        rotate ccw | z <br>
+        rotate cw | x <br><br>
+        <strong>Select level 0-9 to start game!</strong>
+        </span>
+
     </p>
+
 
     <div id = "container">
         <canvas class="drop-shadow" id="grid-bg"></canvas>
@@ -37,6 +47,18 @@
                 <div id="container-next-piece">
                 </div>
             </div>
+            <div class="buttons">
+                <button class="button drop-shadow" id="button0">0</button>
+                <button class="button drop-shadow" id="button1">1</button>
+                <button class="button drop-shadow" id="button2">2</button>
+                <button class="button drop-shadow" id="button3">3</button>
+                <button class="button drop-shadow" id="button4">4</button>
+                <button class="button drop-shadow" id="button5">5</button>
+                <button class="button drop-shadow" id="button6">6</button>
+                <button class="button drop-shadow" id="button7">7</button>
+                <button class="button drop-shadow" id="button8">8</button>
+                <button class="button drop-shadow" id="button9">9</button>
+            </div>
         </div>
 
     </div>
@@ -45,7 +67,7 @@
     
     <script src="array-generator.js"></script>
     <script src="tetriminoes.js"></script>
-    <script src="tetris-scoring.js"></script>
+    <script src="tetris-score-line-level.js"></script>
     <script src="tetris.js"></script>
     <script src="tetris-grid.js"></script>
 </body>
