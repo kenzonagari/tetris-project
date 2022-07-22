@@ -169,9 +169,9 @@ function movePiece (dir) {
 
         if(posY <= 1){                                                              //if collision occurs when posY is at the top of the canvas,
             gameOver();                                                             //game is over.
+        } else {
+            restartPiece();                                                             //otherwise, generate random piece on top and continue game.
         }
-
-        restartPiece();                                                             //otherwise, generate random piece on top and continue game.
     };
 }
 
@@ -263,14 +263,17 @@ function rotatePiece(dir){
 //* set what happens when Game is over.
 function gameOver () {
     alert("game over!");
+    gameOverFlag = 1;
     ctx.clearRect(0, 0, canvasArray[0].length, canvasArray.length); //clear main canvas
     canvasArray = createEmptyArray(10,20); //start over canvas array (all cells are zero)
     scoreReset(); //reset score
+    $nextPieceGrid.empty(); //empty Next Piece div
 }
 
 //* start new game when called.
 function startPlay(startLevelNum){
     alert(`Starting New Game at Level ${startLevelNum}`);
+    gameOverFlag = 0;
     startingLevel = startLevelNum;  //set starting level
     ctx.clearRect(0, 0, canvasArray[0].length, canvasArray.length); //clear main canvas
     canvasArray = createEmptyArray(10,20); //start over canvas array (all cells are zero)
@@ -286,19 +289,22 @@ function startPlay(startLevelNum){
 let dropCounter = 0;
 let dropInterval = levelUpTimer();
 let lastTime = 0;
+let gameOverFlag = 1; //game can only start if gameOverFlag === 0 (by pressing start button)
 
 function update (time = 0) {
-    const deltaTime = time - lastTime;
-    lastTime = time;
-    //console.log(deltaTime);
-    dropCounter += deltaTime;
-    dropInterval = levelUpTimer();
-
-    //if dropCounter is added enough to be larger than dropInterval (e.g. dropCounter is larger than dropInterval of 1000ms),
-    if(dropCounter > dropInterval){ 
-        movePiece("down"); //dropCounter is reset to 0 after this function.
+    if(gameOverFlag === 0){
+        const deltaTime = time - lastTime;
+        lastTime = time;
+        //console.log(deltaTime);
+        dropCounter += deltaTime;
+        dropInterval = levelUpTimer();
+    
+        //if dropCounter is added enough to be larger than dropInterval (e.g. dropCounter is larger than dropInterval of 1000ms),
+        if(dropCounter > dropInterval){ 
+            movePiece("down"); //dropCounter is reset to 0 after this function.
+        }
+        requestAnimationFrame(update); // call itself recursively
     }
-    requestAnimationFrame(update); // call itself recursively
 }
 
 
@@ -306,16 +312,16 @@ function update (time = 0) {
 //! Initialize keypresses and buttons
 
 $(document).keydown(function (event) {
-    if(posY !== -1){
-        if(event.which === 88) { //x-key
-            rotatePiece('cw');
+    if(gameOverFlag === 0){
+        if(posY !== -1){
+            if(event.which === 88) { //x-key
+                rotatePiece('cw');
+            }
+            else if(event.which === 90) { //z-key
+                rotatePiece('ccw');
+            }
         }
-        else if(event.which === 90) { //z-key
-            rotatePiece('ccw');
-        }
-    }
-    
-    
+        
         if(event.which === 37) { //LEFT arrow
             movePiece("left");
         } 
@@ -326,7 +332,7 @@ $(document).keydown(function (event) {
             dropdownScore(); //* add dropdown score every time down key is pressed
             movePiece("down");
         }
-
+    }
 });
 
 //* button starts game on click, each with different level start
