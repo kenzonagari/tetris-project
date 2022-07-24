@@ -1,5 +1,5 @@
 body {
-    background: #0b0b0d;
+    background: #090909;
     font-family: 'Press Start 2P', cursive;
     font-size: 10px;
     color:rgb(255, 243, 228);
@@ -12,6 +12,11 @@ body {
     height:250px;
     position: absolute;
     margin: 5px auto;
+}
+
+#left-container {
+    width:350px; 
+    margin-left: 10px;
 }
 
 p{
@@ -32,6 +37,25 @@ p{
     margin: 10px;
     border: 2px solid rgb(120, 120, 120);
     border-radius: 20px ;
+}
+
+.high-scores-box {
+    width: 250px;
+    height: 290px;
+    padding: 10px;
+    padding-left: 20px;
+    margin: 20px;
+    background-color: #000;
+    border-radius: 15px;
+    font-size: 1.25em;
+    line-height: 2em;
+}
+
+#high-scores-title {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    
 }
 
 #container {
