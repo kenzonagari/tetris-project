@@ -123,6 +123,17 @@ function horizontalCollision (canvasArr, pieceArr, x, y){
     return false;
 }
 
+function hardDrop (y){
+    let posYTarget = y;
+    while(true){
+        y++;
+        posYTarget++;
+        if (collision(canvasArray, piece, posX, y)){
+            return posYTarget;
+        }
+    }
+}
+
 let lockFlag = 0;
 
 //* Move piece based on direction input, and call relevant functions when collision occurs.
@@ -138,13 +149,13 @@ function movePiece (dir) {
         }
     }
     
-    else if (dir === "up"){
+    if (dir === "up"){
         if(posY >= 0){
             posY--;
         }
     }
     
-    else if (dir === "right"){
+    if (dir === "right"){
         posX++;
         if ((horizontalCollision(canvasArray, piece, posX, posY)) === true){
             posX--; //void previous move if horizontal collision is true.
@@ -152,11 +163,14 @@ function movePiece (dir) {
         }
     }
     
-    else if (dir === "down"){
-        if(posY < canvasArray.length){
+    if (dir === "down"){
             posY++;
-            dropCounter = 0; //reset dropCounter (see function Update below)
-        }  
+            dropCounter = 0; //*reset dropCounter (see function Update below)
+    }
+
+    if (dir === "harddrop"){
+            posY = hardDrop(posY);
+            dropCounter = 0; //*reset dropCounter (see function Update below) 
     }
     
     console.log(dir, 'was pressed', posX, posY);
@@ -261,13 +275,12 @@ function rotatePiece(dir){
 
 //* set what happens when Game is over.
 function gameOver () {
-    alert("game over!");
+    alert(`Game Over! Total score: ${totalScore}`);
     gameOverFlag = 1;
     ctx.clearRect(0, 0, canvasArray[0].length, canvasArray.length); //clear main canvas
     canvasArray = createEmptyArray(10,20); //start over canvas array (all cells are zero)
     recordScore();
     scoreReset(); //reset score
-    $nextPieceGrid.empty(); //empty Next Piece div
 }
 
 //* start new game when called.
@@ -314,10 +327,12 @@ function update (time = 0) {
 $(document).keydown(function (event) {
     if(gameOverFlag === 0){
         if(posY !== -1){
+            
             if(event.which === 88) { //x-key
                 rotatePiece('cw');
             }
-            else if(event.which === 90) { //z-key
+            
+            if(event.which === 90) { //z-key
                 rotatePiece('ccw');
             }
         }
@@ -325,12 +340,16 @@ $(document).keydown(function (event) {
         if(event.which === 37) { //LEFT arrow
             movePiece("left");
         } 
-        else if(event.which === 39) { //RIGHT arrow
+        
+        if(event.which === 39) { //RIGHT arrow
             movePiece("right");
         }
-        else if(event.which === 40) { //DOWN arrow
+        if(event.which === 40) { //DOWN arrow
             dropdownScore(); //* add dropdown score every time down key is pressed
             movePiece("down");
+        }
+        if(event.which === 38) { //UP arrow
+            movePiece("harddrop");
         }
     }
 });

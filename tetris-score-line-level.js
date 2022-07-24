@@ -50,8 +50,11 @@ function setLevel() {
 function scoreReset () {
     totalScore = 0;
     totalLine = 0;
+    level = 0;
+    $nextPieceGrid.empty(); //empty Next Piece div
     logScore(totalScore);
     logLineCount(totalLine);
+    logLevel(level);
 }
 
 //* display score
