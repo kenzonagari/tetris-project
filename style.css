@@ -35,6 +35,8 @@ p{
     width: 250px;
     padding: 10px;
     margin: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     border: 2px solid rgb(120, 120, 120);
     border-radius: 20px ;
 }
@@ -44,7 +46,8 @@ p{
     height: 290px;
     padding: 10px;
     padding-left: 20px;
-    margin: 20px;
+    margin-left: 20px;
+    margin-top: 0px;
     background-color: #000;
     border-radius: 15px;
     font-size: 1.25em;
@@ -84,7 +87,7 @@ canvas {
 #grid-bg {
     border-radius: 15px;
     z-index: 1;
-    opacity: 10%;
+    opacity: 20%;
     
 }
 
@@ -148,17 +151,6 @@ canvas {
     height: 250px;
 }
 
-
-
-.drop-shadow{
-    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.12), 
-                0 4px 10px rgba(152, 152, 152, 0.12), 
-                0 6px 15px rgba(179, 179, 179, 0.1), 
-                0 8px 20px rgba(255, 255, 255, 0.1),
-                0 12px 25px rgba(255, 255, 255, 0.1);
-
-}
-
 #container-next-piece{
     flex-basis: 50px;
     display: flex;
@@ -167,8 +159,6 @@ canvas {
     text-align: center;
     transform: scale(0.90);
 }
-
-
 
 .piece-square{
     background:rgb(255, 140, 0);
@@ -183,3 +173,11 @@ canvas {
     opacity: 0%;
 }
 
+.drop-shadow{
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.12), 
+                0 4px 10px rgba(152, 152, 152, 0.12), 
+                0 6px 15px rgba(179, 179, 179, 0.1), 
+                0 8px 20px rgba(255, 255, 255, 0.1),
+                0 12px 25px rgba(255, 255, 255, 0.1);
+
+}
