@@ -65,6 +65,10 @@ function restartPiece(){
         posX = 4; 
     }
 
+    renderGame();
+}
+
+function renderGame () {
     draw(canvasArray, 0, 0, alpha=false); //draw canvas array on the main canvas
     draw(piece, posX, posY); //draw piece array on the main canvas
 }
@@ -119,6 +123,8 @@ function horizontalCollision (canvasArr, pieceArr, x, y){
     return false;
 }
 
+let lockFlag = 0;
+
 //* Move piece based on direction input, and call relevant functions when collision occurs.
 function movePiece (dir) {
     //*clear main canvas
@@ -155,13 +161,12 @@ function movePiece (dir) {
     
     console.log(dir, 'was pressed', posX, posY);
 
-    //* re-draw both canvas array and piece array on the main canvas for every movement made. Is there a faster way?
-    draw(canvasArray, 0, 0, alpha=false);
-    draw(piece, posX, posY);
+    //* render both canvas array and piece array on the main canvas for every movement made.
+    renderGame();
 
     //* if collision occurs,
     if (collision(canvasArray, piece, posX, posY)){ 
-        // lockDelay();
+
         console.log("collision! Drop interval:", dropInterval, "level:", level);    //logs dropInterval and current level (latter determines former)
         logScore(totalScore);                                                       //logs scores from soft drop/move down
         lockPiece(canvasArray, piece, posX, posY);                                  //locks piece to canvas array 
@@ -198,12 +203,6 @@ function lineClear (canvasArr) {
 
     return canvasArr;
 }
-
-// function lockDelay () {
-//     setTimeout(() => {
-//         console.log("collision! Drop interval:", dropInterval, "level:", level);
-//       }, 800);
-// }
 
 //* transpose cells of an input array based on clockwise rotation 
 function cwRotate(arr){
@@ -266,6 +265,7 @@ function gameOver () {
     gameOverFlag = 1;
     ctx.clearRect(0, 0, canvasArray[0].length, canvasArray.length); //clear main canvas
     canvasArray = createEmptyArray(10,20); //start over canvas array (all cells are zero)
+    recordScore();
     scoreReset(); //reset score
     $nextPieceGrid.empty(); //empty Next Piece div
 }

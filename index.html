@@ -18,22 +18,27 @@
 <body>
     
     <div id="canvasesdiv">
-
-    <p>
-        TETRIS.JS <br>
-        by KENZO <br><br>
-        GA SEIF10 - Project 1 <br><br><br>
-        <span class="instruction">
-        move left | left arrow <br>
-        move right | right arrow <br>
-        move down | down arrow <br>
-        rotate ccw | z <br>
-        rotate cw | x <br><br>
-        <strong>Select level 0-9 to start game!</strong>
-        </span>
-
-    </p>
-
+        <div id="left-container">
+            <p>
+                TETRIS.JS <br>
+                by KENZO <br><br>
+                GA SEIF10 - Project 1 <br><br><br>
+                <span class="instruction">
+                move left | left arrow <br>
+                move right | right arrow <br>
+                move down | down arrow <br>
+                rotate ccw | z <br>
+                rotate cw | x <br><br>
+                <strong>Select level 0-9 to start game!</strong>
+                </span>
+                <div class="high-scores-box drop-shadow" id="high-scores">
+                    <span id="high-scores-title">HIGH SCORES</span>
+                    <ol id="ol-high-scores">
+                    </ol>
+                </div>
+        
+            </p>
+        </div>
 
     <div id = "container">
         <canvas class="drop-shadow" id="grid-bg"></canvas>
