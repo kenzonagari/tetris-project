@@ -128,6 +128,7 @@ function hardDrop (y){
     while(true){
         y++;
         posYTarget++;
+        dropdownScore();
         if (collision(canvasArray, piece, posX, y)){
             return posYTarget;
         }
