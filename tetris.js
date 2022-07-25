@@ -93,9 +93,9 @@ function collision (canvasArr, pieceArr, x, y){
         for (let i = 0; i < pieceArr[j].length; i++){ //x-axis
             if(
                     (pieceArr[j][i] !== 0 && 
-                    ((y+j+1) >= canvasArr.length))      // if piece collides with the bottom end... 
-                ||  (pieceArr[j][i] !== 0 &&            // or if a cell within the piece array with a non-zero value finds
-                    canvasArr[y+j+1][x+i] !== 0)        // another non-zero cell just below it at the canvas array...
+                    ((y+j) >= canvasArr.length))      // if piece collides/*overlaps* with the bottom end... 
+                ||  (pieceArr[j][i] !== 0 &&          // or if a cell within the piece array with a non-zero value overlaps
+                    canvasArr[y+j][x+i] !== 0)        // with another non-zero cell at the canvas array...
             ){                 
                 return true;                            // then vertical collision is TRUE.
             }
@@ -135,7 +135,6 @@ function hardDrop (y){
     }
 }
 
-let lockFlag = 0;
 
 //* Move piece based on direction input, and call relevant functions when collision occurs.
 function movePiece (dir) {
@@ -182,16 +181,17 @@ function movePiece (dir) {
     //* if collision occurs,
     if (collision(canvasArray, piece, posX, posY)){ 
 
-        console.log("collision! Drop interval:", dropInterval, "level:", level);    //logs dropInterval and current level (latter determines former)
-        logScore(totalScore);                                                       //logs scores from soft drop/move down
-        lockPiece(canvasArray, piece, posX, posY);                                  //locks piece to canvas array 
-        lineClear(canvasArray);                                                     //check for line clear, mainly
-
-        if(posY <= 1){                                                              //if collision occurs when posY is at the top of the canvas,
-            gameOver();                                                             //game is over.
-        } else {
-            restartPiece();                                                             //otherwise, generate random piece on top and continue game.
-        }
+            posY--; //push piece one up (has to do with the collision algorithm)
+            console.log("collision! Drop interval:", dropInterval, "level:", level);    //logs dropInterval and current level (latter determines former)
+            logScore(totalScore);                                                       //logs scores from soft drop/move down
+            lockPiece(canvasArray, piece, posX, posY);                                  //locks piece to canvas array 
+            lineClear(canvasArray);                                                     //check for line clear, mainly
+    
+            if(posY <= 1){                                                              //if collision occurs when posY is at the top of the canvas,
+                gameOver();                                                             //game is over.
+            } else {
+                restartPiece();                                                             //otherwise, generate random piece on top and continue game.
+            }
     };
 }
 
