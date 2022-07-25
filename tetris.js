@@ -187,7 +187,7 @@ function movePiece (dir) {
             lockPiece(canvasArray, piece, posX, posY);                                  //locks piece to canvas array 
             lineClear(canvasArray);                                                     //check for line clear, mainly
     
-            if(posY <= 1){                                                              //if collision occurs when posY is at the top of the canvas,
+            if(posY <= 0){                                                              //if collision occurs when posY is at the top of the canvas,
                 gameOver();                                                             //game is over.
             } else {
                 restartPiece();                                                             //otherwise, generate random piece on top and continue game.
