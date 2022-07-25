@@ -51,7 +51,7 @@ p{
     background-color: #000;
     border-radius: 15px;
     font-size: 1.25em;
-    line-height: 2em;
+    line-height: 2.2em;
 }
 
 #high-scores-title {
@@ -179,5 +179,4 @@ canvas {
                 0 6px 15px rgba(179, 179, 179, 0.1), 
                 0 8px 20px rgba(255, 255, 255, 0.1),
                 0 12px 25px rgba(255, 255, 255, 0.1);
-
 }
