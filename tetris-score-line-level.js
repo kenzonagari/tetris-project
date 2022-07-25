@@ -5,7 +5,7 @@ let totalScore = 0;
 let totalLine = 0;
 let startingLevel = 0;
 let level = 0;
-let highScores = [0,0,0,0,0,0,0,0,0,0];
+let highScores = [0,0,0,0,0,0,0,0,0];
 //set score scheme for 1-4 line count
 const scoreScheme = [(40 * (level + 1)), (100 * (level + 1)), (300 * (level + 1)),	(1200 * (level + 1))];
 
