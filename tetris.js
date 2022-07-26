@@ -356,15 +356,12 @@ $(document).keydown(function (event) {
 });
 
 //* button starts game on click, each with different level start
-$('#button0').on('click', () => {startPlay(0)}); //level 0
-$('#button1').on('click', () => {startPlay(1)}); //level 1
-$('#button2').on('click', () => {startPlay(2)}); //level 2
-$('#button3').on('click', () => {startPlay(3)}); //level 3
-$('#button4').on('click', () => {startPlay(4)}); //level 4
-$('#button5').on('click', () => {startPlay(5)}); //level 5
-$('#button6').on('click', () => {startPlay(6)}); //level 6
-$('#button7').on('click', () => {startPlay(7)}); //level 7
-$('#button8').on('click', () => {startPlay(8)}); //level 8
-$('#button9').on('click', () => {startPlay(9)}); //level 9
+
+for (let i=0 ; i < 10 ; i++){
+    const $button = $('<button>').addClass("button drop-shadow").attr("id", `button${i}`).text(i);
+    $('#buttons').append($button);
+    $(`#button${i}`).on('click', () => {startPlay(i)}); //initialize level 0-9
+}
+
 
 

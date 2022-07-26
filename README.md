@@ -19,7 +19,15 @@ As a Player:
 * I want to see a list of my scores to see how well I've been performing
 
 ## Wireframes
-Draw the UI/UX of the game
+(In no particular order)
+* Main canvas
+* Score
+* Lines
+* Level 
+* Next Piece
+* Start Level 0-9 buttons
+* High Scores
+* Instructions
 
 ## Data
 
@@ -38,10 +46,8 @@ Draw the UI/UX of the game
 
     The non-zero elements in each tetrimino array has different numbers, each pointing to a different HEX color value (so that each tetrimino has a unique cell color)
 
-3. Players may start the game by selecting level 0 to 9. Each level corresponds to a different starting speed, which is calculated as such: 
-```   
-    timer = 2000/(level+1)
-```
+3. Players may start the game by selecting level 0 to 9. Each level corresponds to a different starting speed, which is calculated as such: `timer = 2000/(level+1)`
+
     *e.g. If a player starts at level 3, there will be (2000/4) = 500ms gap between one frame and the next. Subsequent levels also follow this formula.
 
 4. Players enter the next level for every 10 lines cleared, in addition to their starting level. For example, a level 9 start brings the player to level 10 after 10 lines cleared.
@@ -58,6 +64,6 @@ Draw the UI/UX of the game
     * Hard drop = 2 * distance
 
 ## Others
-
-* Credit (credit codes where appropriate)
-* Copyright (images & sounds)
+* Credit:
+   * Drawing grids and cells in JavaScript using .getElementById and .getContext('2d') - [https://youtu.be/zdaXHq95YHw]
+   * Using requestAnimationFrame() to set animation fps - []
