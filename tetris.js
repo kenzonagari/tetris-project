@@ -361,6 +361,12 @@ for (let i=0 ; i < 10 ; i++){
     const $button = $('<button>').addClass("button drop-shadow").attr("id", `button${i}`).text(i);
     $('#buttons').append($button);
     $(`#button${i}`).on('click', () => {startPlay(i)}); //initialize level 0-9
+
+    $(document).keydown(function (event) {
+        if(event.key === `${i}`) {
+            startPlay(i);
+        } 
+    });
 }
 
 
