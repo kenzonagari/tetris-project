@@ -39,8 +39,7 @@ Draw the UI/UX of the game
     The non-zero elements in each tetrimino array has different numbers, each pointing to a different HEX color value (so that each tetrimino has a unique cell color)
 
 3. Players may start the game by selecting level 0 to 9. Each level corresponds to a different starting speed, which is calculated as such: 
-```   
-    timer = 2000/(level+1)
+   `timer = 2000/(level+1)`
 
     *e.g. If a player starts at level 3, there will be (2000/4) = 500ms gap between one frame and the next. Subsequent levels also follow this formula.
 
