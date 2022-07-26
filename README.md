@@ -64,6 +64,7 @@ As a Player:
     * Hard drop = 2 * distance
 
 ## Others
-* Credit (credit codes where appropriate)
-* Copyright (images & sounds)
+* Credit:
+   * Drawing grids and cells in JavaScript using .getElementById and .getContext('2d') - [https://youtu.be/zdaXHq95YHw]
+   * Using requestAnimationFrame() to set animation fps - []
 
