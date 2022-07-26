@@ -14,7 +14,7 @@ body {
     margin: 5px auto;
 }
 
-#left-container {
+#sidebar {
     width:350px; 
     margin-left: 10px;
 }
@@ -31,7 +31,7 @@ p{
     font-size: 15px;
     font-stretch: narrower;
     text-align: center;
-    line-height: 2em;
+    line-height: 1.9em;
     width: 250px;
     padding: 10px;
     margin: 10px;
@@ -43,7 +43,7 @@ p{
 
 .high-scores-box {
     width: 250px;
-    height: 290px;
+    height: 280px;
     padding: 10px;
     padding-left: 20px;
     margin-left: 20px;
@@ -51,7 +51,7 @@ p{
     background-color: #000;
     border-radius: 15px;
     font-size: 1.25em;
-    line-height: 2.2em;
+    line-height: 2.1em;
 }
 
 #high-scores-title {
