@@ -22,14 +22,12 @@ function score (lineNum) {
 }
 
 //* add score when Move Down is pressed
-function dropdownScore () {
-    let dropdownValue = 0;
-    if(level == 0){
-        dropdownValue = 1;
-    } else {
-        dropdownValue = level;
+function dropdownScore (type) {
+    if(type === "soft"){
+        totalScore ++;
+    } else if (type === "hard"){
+        totalScore += 2;
     }
-    totalScore += dropdownValue;
 }
 
 //* calculate total lines burned/scored
