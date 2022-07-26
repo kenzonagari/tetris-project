@@ -19,7 +19,15 @@ As a Player:
 * I want to see a list of my scores to see how well I've been performing
 
 ## Wireframes
-Draw the UI/UX of the game
+(In no particular order)
+* Main canvas
+* Score
+* Lines
+* Level 
+* Next Piece
+* Start Level 0-9 buttons
+* High Scores
+* Instructions
 
 ## Data
 
