@@ -17,6 +17,7 @@ body {
 #sidebar {
     width:350px; 
     margin-left: 10px;
+    transform: scale(0.95);
 }
 
 p{
@@ -62,7 +63,7 @@ p{
 }
 
 #container {
-    transform: scale(0.66);
+    transform: scale(0.64);
     display: flex;
     flex-direction: row;
     margin: 0 auto;
@@ -113,10 +114,13 @@ canvas {
 }
 
 .buttons{
-    width: 600px;
+    width: 550px;
     position: relative;
     left: 133%;
     margin: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 .button{
