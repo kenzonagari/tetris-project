@@ -7,8 +7,8 @@ const ctx = canvas.getContext('2d');
 canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
 
-const unitX = canvas.width/10; //width-height of one grid in px
-const unitY = canvas.height/20; //width-height of one grid in px
+const unitX = canvas.width/10; //width-height of one cell in px
+const unitY = canvas.height/20; //width-height of one cell in px
 
 ctx.scale(unitX,unitY); // scales up the current drawing
 
@@ -16,7 +16,7 @@ ctx.scale(unitX,unitY); // scales up the current drawing
 //-----------------------------------------------//
 //! Declare variables related to main canvas 
 
-let canvasArray = createEmptyArray(10,20); //*set the canvas - an array of width 10 and height 20. Each 'grid' is represented by element 0.
+let canvasArray = createEmptyArray(10,20); //*set the canvas - an array of width 10 and height 20. Each 'cell' is represented by element 0.
 let posX=0; //*posX defines the x-coordinate of where the player is at any given time
 let posY=0; //*posY defines the y-coordinate of where the player is at any given time
 
@@ -79,7 +79,7 @@ function lockPiece (canvasArr, pieceArr, x, y) {
     for (let j = 0; j < pieceArr.length; j++){ //y-axis
         for (let i = 0; i < pieceArr[j].length; i++){ //x-axis
             if(pieceArr[j][i] !== 0){ // for every array in pieceArr that has non-zero value,
-                // fill up the corresponding grids in canvasArr (relative to posX and posY as the base point)
+                // fill up the corresponding cells in canvasArr (relative to posX and posY as the base point)
                 canvasArr[y + j][x + i] = pieceArr[j][i];
             }
         }
@@ -128,7 +128,7 @@ function hardDrop (y){
     while(true){
         y++;
         posYTarget++;
-        dropdownScore();
+        dropdownScore("hard");
         if (collision(canvasArray, piece, posX, y)){
             return posYTarget;
         }
@@ -346,7 +346,7 @@ $(document).keydown(function (event) {
             movePiece("right");
         }
         if(event.which === 40) { //DOWN arrow
-            dropdownScore(); //* add dropdown score every time down key is pressed
+            dropdownScore("soft"); //* add dropdown score every time down key is pressed
             movePiece("down");
         }
         if(event.which === 38) { //UP arrow
