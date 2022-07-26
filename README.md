@@ -41,7 +41,7 @@ Draw the UI/UX of the game
 3. Players may start the game by selecting level 0 to 9. Each level corresponds to a different starting speed, which is calculated as such: 
 ```   
     timer = 2000/(level+1)
-```
+
     *e.g. If a player starts at level 3, there will be (2000/4) = 500ms gap between one frame and the next. Subsequent levels also follow this formula.
 
 4. Players enter the next level for every 10 lines cleared, in addition to their starting level. For example, a level 9 start brings the player to level 10 after 10 lines cleared.
