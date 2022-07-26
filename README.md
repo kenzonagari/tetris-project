@@ -58,6 +58,6 @@ Draw the UI/UX of the game
     * Hard drop = 2 * distance
 
 ## Others
-
 * Credit (credit codes where appropriate)
 * Copyright (images & sounds)
+
