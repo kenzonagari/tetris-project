@@ -84,7 +84,7 @@ function lockPiece (canvasArr, pieceArr, x, y) {
             }
         }
     }
-    //console.log(canvasArr); //* <--- uncomment to see the merged canvas array after every collision 
+    console.log(canvasArr); //* <--- uncomment to see the merged canvas array after every collision 
 }
 
 //* Check if (vertical) collision happens or not. Returns Boolean value.
@@ -325,16 +325,24 @@ function update (time = 0) {
 //-----------------------------------------------//
 //! Initialize keypresses and buttons
 
+let keyDown = false;
+
 $(document).keydown(function (event) {
     if(gameOverFlag === 0){
         if(posY !== -1){
             
             if(event.which === 88) { //x-key
-                rotatePiece('cw');
+                if(!keyDown){
+                    rotatePiece('cw');
+                    keyDown = true;
+                }
             }
             
             if(event.which === 90) { //z-key
-                rotatePiece('ccw');
+                if(!keyDown){
+                    rotatePiece('ccw');
+                    keyDown = true;
+                }
             }
         }
         
@@ -351,6 +359,21 @@ $(document).keydown(function (event) {
         }
         if(event.which === 38) { //UP arrow
             movePiece("harddrop");
+        }
+    }
+});
+
+$(document).keyup(function (event) {
+    if(gameOverFlag === 0){
+        if(posY !== -1){
+
+            if(event.which === 88) { //x-key
+                keyDown = false;
+            }
+            
+            if(event.which === 90) { //z-key
+                keyDown = false;
+            }
         }
     }
 });

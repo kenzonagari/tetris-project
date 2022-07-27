@@ -7,18 +7,25 @@ let startingLevel = 0;
 let level = 0;
 let highScores = [0,0,0,0,0,0,0,0,0];
 //set score scheme for 1-4 line count
-const scoreScheme = [(40 * (level + 1)), (100 * (level + 1)), (300 * (level + 1)),	(1200 * (level + 1))];
+const scoreScheme = {
+    1: function(){ return (40 * (level + 1)) },
+    2: function(){ return (100 * (level + 1)) }, 
+    3: function(){ return (300 * (level + 1)) },	
+    4: function(){ return (1200 * (level + 1)) }
+};
 
 //-----------------------------------------------//
 //! FUNCTIONS
 
 //* calculate score
 function score (lineNum) {
+    let score = 0;
     if(lineNum > 0){
-        let score = scoreScheme[lineNum-1];
-        totalScore += score;
-        logScore(totalScore);
+        score = scoreScheme[lineNum]();
     }
+    totalScore += score;
+    console.log(`${lineNum}, ${score}`); //for debugging
+    logScore(totalScore);
 }
 
 //* add score when Move Down is pressed
