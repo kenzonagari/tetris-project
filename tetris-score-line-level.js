@@ -22,10 +22,10 @@ function score (lineNum) {
     let score = 0;
     if(lineNum > 0){
         score = scoreScheme[lineNum]();
+        totalScore += score;
+        //console.log(`${lineNum}, ${score}`); //for debugging
+        logMessage(lineNum, score);
     }
-    totalScore += score;
-    //console.log(`${lineNum}, ${score}`); //for debugging
-    logMessage(lineNum, score);
     logScore(totalScore);
 }
 
@@ -103,6 +103,7 @@ function logHighScores (arr) {
 }
 
 function logMessage(line, score){
+    $('#message-log').empty();
     const $divLog = $('<div>').attr('id','message');
     if(line === 1){
         $divLog.text(`Single! +${score}`);
