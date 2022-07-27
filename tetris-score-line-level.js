@@ -24,7 +24,8 @@ function score (lineNum) {
         score = scoreScheme[lineNum]();
     }
     totalScore += score;
-    console.log(`${lineNum}, ${score}`); //for debugging
+    //console.log(`${lineNum}, ${score}`); //for debugging
+    logMessage(lineNum, score);
     logScore(totalScore);
 }
 
@@ -99,4 +100,22 @@ function logHighScores (arr) {
         const $li = $('<li>').text(arr[i]);
         $("#ol-high-scores").append($li);
     }
+}
+
+function logMessage(line, score){
+    const $divLog = $('<div>');
+    if(line === 1){
+        $divLog.text(`Single! +${score}`);
+    }
+    if(line === 2){
+        $divLog.text(`Double! +${score}`);
+    }
+    if(line === 3){
+        $divLog.text(`Triple! +${score}`);
+    }
+    if(line === 4){
+        $divLog.text(`Tetris! +${score}`);
+    }
+    $('#message-log').append($divLog);
+    $divLog.fadeOut(1500);
 }
