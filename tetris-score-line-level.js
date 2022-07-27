@@ -103,7 +103,7 @@ function logHighScores (arr) {
 }
 
 function logMessage(line, score){
-    const $divLog = $('<div>');
+    const $divLog = $('<div>').attr('id','message');
     if(line === 1){
         $divLog.text(`Single! +${score}`);
     }
@@ -117,5 +117,5 @@ function logMessage(line, score){
         $divLog.text(`Tetris! +${score}`);
     }
     $('#message-log').append($divLog);
-    $divLog.fadeOut(1500);
+    $divLog.fadeOut(2000);
 }
