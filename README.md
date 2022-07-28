@@ -1,6 +1,8 @@
 # tetris.js
 Simple Tetris build using JavaScript + jQuery + HTML + CSS
 
+Try it out! https://tetris-js-kenzo.vercel.app/
+
 ## Planning your game
 
 * User Stories
