@@ -83,7 +83,7 @@ function logLevel (num) {
 
 //* calculate how fast/how slow pieces move down, based on level
 function levelUpTimer () {
-    let timer = 2000/(level+1);
+    let timer = 1500/(level+1);
     return timer;
 }
 
