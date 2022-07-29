@@ -141,7 +141,7 @@ function movePiece (dir) {
     
     if (dir === "left"){
         posX--;
-        if ((horizontalCollision(canvasArray, piece, posX, posY)) === true){
+        if ((horizontalCollision(canvasArray, piece, posX, posY)) === true || collision(canvasArray, piece, posX, posY) === true){
         posX++;     //void previous move if horizontal collision is true.    
         console.log('horizontal collision');
         }
@@ -155,7 +155,7 @@ function movePiece (dir) {
     
     if (dir === "right"){
         posX++;
-        if ((horizontalCollision(canvasArray, piece, posX, posY)) === true){
+        if ((horizontalCollision(canvasArray, piece, posX, posY)) === true || collision(canvasArray, piece, posX, posY) === true){
             posX--; //void previous move if horizontal collision is true.
             console.log('horizontal collision');
         }
@@ -229,7 +229,6 @@ function toggleRow(row, canvasArr){
             }
             ctx.fillRect(0, row, 10, 1);
             flashToggle++;
-            
             if(i === flashAmount){
                 canvasArr.splice(row,1);                    //remove that row from canvas array
                 canvasArr.unshift([0,0,0,0,0,0,0,0,0,0]);   //and add row of empty cells at the top of canvas array
