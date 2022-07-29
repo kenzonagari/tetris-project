@@ -113,8 +113,6 @@ function horizontalCollision (canvasArr, pieceArr, x, y){
                     ((x+i) >= canvasArr[j].length))     // if piece collides with either right...  
                 ||  (pieceArr[j][i] !== 0 && 
                     ((x+i) < 0))                        // or left wall...
-                ||  (pieceArr[j][i] !== 0 &&            
-                    canvasArr[y+j][x+i] !== 0)          // or if the piece overlaps against itself...
             ){                 
                 return true;                            // then horizontal collision is TRUE.
             }
@@ -206,8 +204,7 @@ function lineClear (canvasArr) {
                 rowCheck++;                                 //rowCheck +1
             }
             if(rowCheck === 10){                            //if rowCheck = 10 (meaning every single cell in a row is full)
-                canvasArr.splice(j,1);                      //remove that row from canvas array
-                canvasArr.unshift([0,0,0,0,0,0,0,0,0,0]);   //and add row of empty cells at the top of canvas array
+                toggleRow(j, canvasArr);
                 lineAmount++;                               //lineAmount +1
             }
         }
@@ -217,6 +214,31 @@ function lineClear (canvasArr) {
     lineCount(lineAmount);  //so is the case with lineCount
 
     return canvasArr;
+}
+
+//* animate flash/toggle for rows that are cleared
+function toggleRow(row, canvasArr){
+    let flashToggle = 0;
+    const flashAmount = 3;
+    for (let i = 0 ; i <= flashAmount ; i++){
+        setTimeout(()=>{    //visually flash row before clearing
+            if(flashToggle % 2 === 0){
+                ctx.fillStyle = 'black';
+            } else {
+                ctx.fillStyle = 'white';
+            }
+            ctx.fillRect(0, row, 10, 1);
+            flashToggle++;
+            
+            if(i === flashAmount){
+                canvasArr.splice(row,1);                    //remove that row from canvas array
+                canvasArr.unshift([0,0,0,0,0,0,0,0,0,0]);   //and add row of empty cells at the top of canvas array
+            }
+        }, (50*i));
+    }
+    setTimeout(()=>{
+        renderGame();
+    }, (50*flashAmount));
 }
 
 //* transpose cells of an input array based on clockwise rotation 
@@ -259,14 +281,14 @@ function ccwRotate(arr){
 function rotatePiece(dir){
     if(dir === 'cw'){
         piece = cwRotate(piece);
-        if((horizontalCollision(canvasArray, piece, (posX), posY)) === true){  
+        if((horizontalCollision(canvasArray, piece, posX, posY)) === true || collision(canvasArray, piece, posX, posY) === true){  
             piece = ccwRotate(piece);   //void previous rotation if horizontal collision is true.
             console.log("can't. stuck.") 
         }
         movePiece('x');
     } else if (dir === 'ccw'){
         piece = ccwRotate(piece);
-        if((horizontalCollision(canvasArray, piece, (posX), posY)) === true){
+        if((horizontalCollision(canvasArray, piece, posX, posY)) === true || collision(canvasArray, piece, posX, posY) === true){
         piece = cwRotate(piece);    //void previous rotation if horizontal collision is true.
         console.log("can't. stuck.") 
         }
