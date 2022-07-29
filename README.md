@@ -68,5 +68,5 @@ As a Player:
 ## Others
 * Credit:
    * Drawing grids and cells in JavaScript using .getElementById and .getContext('2d') - [https://youtu.be/zdaXHq95YHw]
-   * Using requestAnimationFrame() to set animation fps - []
+   * Using requestAnimationFrame() to set animation fps - [https://researchhubs.com/post/computing/javascript/requestAnimationFrame.html]
 
