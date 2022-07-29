@@ -33,11 +33,12 @@ let piece = piecesArray[0];
 
 //* draw input array on the main canvas. Argument alpha is used to decide if '0' elements/cells should be filled with black or not (yes if canvas, no if piece).
 function draw (arr, offsetX, offsetY, alpha) { 
-
+    let colorNum = 0;
     for (let j = 0; j < arr.length; j++){ //y-axis (represented as index j to avoid confusion)
         for (let i = 0; i < arr[j].length; i++){ //x-axis (represented as index i to avoid confusion)
             if(arr[j][i] !== 0){ //arr[y][x] 
-                ctx.fillStyle = piecesColor[arr[j][i]-1];
+                colorNum = arr[j][i];
+                ctx.fillStyle = piecesColor[colorNum-1];
                 ctx.fillRect(i + offsetX, j + offsetY, 1, 1); //x, y, width, height
             } else if (alpha == false){
                 ctx.fillStyle = 'black';
@@ -54,15 +55,11 @@ function restartPiece(){
     setLevel();
     
     piece = piecesArray[pieceRandomizer()];
-    posX = 3;
+    posX = 4;
     posY = 0;
-
-    if(piece[1][1] === 1){ //different y-start for I piece (higher)
-        posY = -1;
-    } 
-    
-    if(piece[1][1] === 4) { //different x-start for O piece (centered)
-        posX = 4; 
+ 
+    if(piece[1][1] === 1) { //different x-start for I piece (centered)
+        posX = 3; 
     }
 
     renderGame();
