@@ -91,11 +91,11 @@ Mapping each of the desired array coordinate from the current one reveals a patt
 
 From the pattern, we can deduce the following formula (note that the mathematical operation is on the right side to follow programming conventions).
 
-<img src="https://i.imgur.com/Rl3orRC.png" width="300">
+<img src="https://i.imgur.com/mHGbdf0.png" width="300">
 
 A similar process for the counterclockwise T-piece rotation yields the following formula.
 
-<img src="https://i.imgur.com/39JsBEq.png" width="300">
+<img src="https://i.imgur.com/mloHazy.png" width="300">
 
 I then applied the two formulas inside two functions, cwRotate and ccwRotate. Great success!
 
