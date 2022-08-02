@@ -244,7 +244,7 @@ function cwRotate(arr){
 
     for (let j = 0; j < arr.length; j++){ //y-axis
         for (let i = 0; i < arr[j].length; i++){ //x-axis
-            emptyArr[j][i] = arr[Math.abs(i-(arr.length-1))][j];
+            emptyArr[j][i] = arr[(arr.length-1)-i][j];
         };
     }
 
@@ -262,7 +262,7 @@ function ccwRotate(arr){
     
     for (let i = 0; i < arr.length; i++){ //y-axis
         for (let j = 0; j < arr[i].length; j++){ //x-axis
-            emptyArr[j][i] = arr[i][Math.abs(j-(arr.length-1))];
+            emptyArr[j][i] = arr[i][(arr.length-1)-j];
         };
     }
 
