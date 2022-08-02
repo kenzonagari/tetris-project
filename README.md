@@ -38,7 +38,7 @@ As a Player:
    * I want to see a list of my scores to see how well I've been performing
    * I want to be able to start again at a level of my choosing
 
-## Wireframes
+## Wireframe
 (In no particular order)
 * Main canvas
 * Score
