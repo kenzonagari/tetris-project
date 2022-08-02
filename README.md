@@ -3,33 +3,40 @@ Simple Tetris build using JavaScript + jQuery + HTML + CSS
 
 Try it out! https://tetris-js-kenzo.vercel.app/
 
-## Background
+## Motivation
 
 The objective of building tetris.js is to test and deepen my understanding of JavaScript + HTML + CSS by building a Tetris game, specifically [the 1989 classic NES Tetris version](https://en.wikipedia.org/wiki/Tetris_(NES_video_game)) that I have *obsessively* played over the past few years. I was very much inspired to build Tetris by reading about its history, especially how its creator Alexei Pajitnov had coded the game in only 2 weeks with one 80s Soviet-era computer ("in a cave, with a box of scraps!"). While my familiarity with the complexity of Tetris did slightly discourage me from embarking on this project, my deep love for the game finally convinced me that the hassle might be more than worth it.
 
 ## Description
 
-Tetris is a single-player puzzle game. Per Wikipedia, "In Tetris, players complete lines by moving differently shaped pieces (tetrominoes), which descend onto the playing field. The completed lines disappear and grant the player points, and the player can proceed to fill the vacated spaces. The game ends when the uncleared lines reach the top of the playing field. The longer the player can delay this outcome, the higher their score will be".
+Tetris is a single-player puzzle game. Per [Wikipedia](https://en.wikipedia.org/wiki/Tetris), "In Tetris, players complete lines by moving differently shaped pieces (tetrominoes), which descend onto the playing field. The completed lines disappear and grant the player points, and the player can proceed to fill the vacated spaces. The game ends when the uncleared lines reach the top of the playing field. The longer the player can delay this outcome, the higher their score will be".
 
 Since this particular Tetris build is inspired by the classic 1989 version, modern Tetris functionalities such as wall kick, multiple next piece preview, piece hold, and auto-lock delay are not included. However, hard drop is included to allow for a faster game pace.
 
 <img src="https://i.imgur.com/NGDi5Wt.png" width="500">
 
-## Timeframe
+## Timeline
 
 * 1 week of planning + building basic design and downward movement of a Tetris piece,
 * followed with 3 weeks of finalizing piece rotation system, scoring, next piece, and high score functionality.
 
-## User Journey
+## User Experience
 
 As a Player:
 
-* I want to start a game of Tetris when I'm ready
-* I want to select which level of play I'm starting at
-* I want to see the scores as I'm playing
-* I want to see the current level as I'm playing
-* I want to see the upcoming tetrimino piece while I'm on a current piece
-* I want to see a list of my scores to see how well I've been performing
+1. Before Gameplay:
+   * I want to start a game of Tetris when I'm ready
+   * I want to select which level of play I'm starting at
+   * I want to see the instructions on how to move the pieces
+
+2. During Gameplay:
+   * I want to see the scores as I'm playing
+   * I want to see the current level as I'm playing
+   * I want to see the upcoming piece while I'm on a current piece
+
+3. After Gameplay:
+   * I want to see a list of my scores to see how well I've been performing
+   * I want to be able to start again at a level of my choosing
 
 ## Wireframes
 (In no particular order)
