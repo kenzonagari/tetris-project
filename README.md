@@ -1,11 +1,13 @@
 # tetris.js
 Simple Tetris build using JavaScript + jQuery + HTML + CSS
 
+<img src="https://i.imgur.com/NcZzO4P.png" width="900">
+
 Try it out! https://tetris-js-kenzo.vercel.app/
 
 ## Motivation
 
-The objective of building tetris.js is to test and deepen my understanding of JavaScript + HTML + CSS by building a simple Tetris game, specifically one inspired by [the 1989 classic NES Tetris version](https://en.wikipedia.org/wiki/Tetris_(NES_video_game)) that I have *obsessively* played over the past few years. I was very much inspired to build Tetris by reading about its history, especially how its creator Alexei Pajitnov had coded the game in only 2 weeks with one 80s Soviet-era computer ("in a cave, with a box of scraps!"). While my familiarity with the complexity of Tetris did slightly discourage me from embarking on this project, my deep love for the game finally convinced me that the hassle might be more than worth it.
+As part of the General Assembly Software Engineering course, I aim to test and deepen my understanding of JavaScript + HTML + CSS by building a simple Tetris game, specifically one inspired by [the 1989 classic NES Tetris version](https://en.wikipedia.org/wiki/Tetris_(NES_video_game)) that I have *obsessively* played over the past few years. I was very much inspired to build Tetris by reading about its history, especially how its creator Alexei Pajitnov had coded the game in only 2 weeks with one 80s Soviet-era computer ("in a cave, with a box of scraps!"). While my familiarity with the complexity of Tetris did slightly discourage me from embarking on this project, my deep love for the game finally convinced me that the hassle might be more than worth it.
 
 <img src="https://i.imgur.com/NGDi5Wt.png" width="400">
 
@@ -13,12 +15,12 @@ The objective of building tetris.js is to test and deepen my understanding of Ja
 
 Tetris is a single-player puzzle game. Per [Wikipedia](https://en.wikipedia.org/wiki/Tetris), "In Tetris, players complete lines by moving differently shaped pieces (tetrominoes), which descend onto the playing field. The completed lines disappear and grant the player points, and the player can proceed to fill the vacated spaces. The game ends when the uncleared lines reach the top of the playing field. The longer the player can delay this outcome, the higher their score will be".
 
-Since this particular Tetris build is inspired by the classic 1989 version, modern Tetris functionalities such as wall kick, multiple next piece preview, piece hold, and auto-lock delay are not included. However, hard drop is included to allow for a faster game pace.
+Since this particular Tetris build is inspired by the classic 1989 version, modern Tetris functionalities such as wall kick, multiple next piece preview, piece hold, and auto-lock delay are not included. However, Hard Drop function is included to allow for a faster game pace (and also to satisfy my personal curiosity).
 
 ## Timeline
 
 * 1 week of planning + building basic design and downward movement of a Tetris piece,
-* followed with 3 weeks of finalizing piece rotation system, scoring, next piece, and high score functionality.
+* followed with 2 weeks of finalizing piece rotation system, scoring, next piece, and high score functionality.
 
 ## User Experience
 
@@ -123,6 +125,16 @@ The hallmark of Tetris is each piece moving downward at a speed unaffected by th
 4. Soft drops and hard drops are also worth some amount of scores:
     * Soft drop = 1 * distance
     * Hard drop = 2 * distance
+
+## Future Developments
+
+One major fix that this particular build needs is the finetuning of the keyboard input to allow for a fast-paced gameplay. A particular quirk in the JavaScript keydown input is that pressing one key while holding another somehow negates the latter, and as such I may work towards finding a solution to this quirk. Input speed parameters such as Auto-Repeat Delay and Auto-Repeat Speed are also something that can be investigated further.
+
+While the game currently doesn't have any of the modern Tetris functionalities (except for Hard Drop), it is certainly more than possible to work on add-ons such as piece hold, ghost pieces .etc to make the game more playable for modern players.
+
+## Summary
+
+Building Tetris using JavaScript proves to be an incredibly enriching experience that helps me solidify my understanding of the JavaScript language and sharpen my HTML + CSS skills. To have achieved most of the functionalities that make the game reasonably playable in a few weeks' time is rather encouraging, and I look forward to using the knowledge I've picked up over the course of this project and apply it in future projects. Last but not least, this project has given me the opportunity to gain a more profound insight into the game I've fallen in love with over the years, and for that I am deeply grateful.    
 
 ## Others
 * Credit:
