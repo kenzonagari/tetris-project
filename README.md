@@ -51,19 +51,12 @@ I drew a simple wireframe which contains:
 * High Scores
 * Instructions
 
-## Data
+## Code Overview
 
-1. Main canvas will be represented as an array of 10 (width) by 20 (height), in which empty cells are represented by 0.
+1. The main canvas is represented as an array of arrays: 20 arrays (height), each having 10 empty cells of 0. I created an array of the specified dimension using the function createEmptyArray:
+<img src="https://i.imgur.com/RcImFSH.png" width="400">
+ 
 2. Each tetrimino will be represented as an array of arrays e.g.
-
-    * I-piece = [[0,0,0,0],
-                [1,1,1,1],
-                [0,0,0,0],
-                [0,0,0,0]]
-
-    * T-piece = [[0,0,0],
-                [6,6,6],  
-                [0,6,0]]
 
     The non-zero elements in each tetrimino array has different numbers, each pointing to a different HEX color value (so that each tetrimino has a unique cell color)
 
