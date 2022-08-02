@@ -99,7 +99,7 @@ A similar process for the counterclockwise T-piece rotation yields the following
 
 I then applied the two formulas inside two functions, cwRotate and ccwRotate. Great success!
 
-<img src="https://i.imgur.com/lNiGpEs.png" height="125"><img src="https://i.imgur.com/BYZ6anD.png" height="125">
+<img src="https://i.imgur.com/lNiGpEs.png" height="150"><img src="https://i.imgur.com/BYZ6anD.png" height="150">
 
 ### Auto-drop
 
