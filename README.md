@@ -42,7 +42,7 @@ As a Player:
 <img src="https://i.imgur.com/bfdGhg1.png" width="700">
 
 I drew a simple wireframe which contains: 
-* Main canvas/board
+* Main board/canvas
 * Score
 * Lines
 * Level 
