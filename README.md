@@ -39,15 +39,16 @@ As a Player:
    * I want to be able to start again at a level of my choosing
 
 ## Wireframe
-(In no particular order)
-* Main canvas/board
-* Score
-* Lines
-* Level 
-* Next Piece
-* Start Level 0-9 buttons
-* High Scores
-* Instructions
+<"https://i.imgur.com/bfdGhg1.png" width="500">
+I drew a simple wireframe containing all key information such as: 
+  * Main canvas/board
+  * Score
+  * Lines
+  * Level 
+  * Next Piece
+  * Start Level 0-9 buttons
+  * High Scores
+  * Instructions
 
 ## Data
 
