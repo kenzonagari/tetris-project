@@ -39,7 +39,7 @@ As a Player:
    * I want to be able to start again at a level of my choosing
 
 ## Wireframe
-<"https://i.imgur.com/bfdGhg1.png" width="500">
+<img src="https://i.imgur.com/bfdGhg1.png" width="500">
 I drew a simple wireframe containing all key information such as: 
   * Main canvas/board
   * Score
