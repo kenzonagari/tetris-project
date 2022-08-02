@@ -39,7 +39,7 @@ As a Player:
    * I want to be able to start again at a level of my choosing
 
 ## Wireframe
-<img src="https://i.imgur.com/bfdGhg1.png" width="500">
+<img src="https://i.imgur.com/bfdGhg1.png" width="700">
 
 I drew a simple wireframe which contains: 
 * Main canvas/board
