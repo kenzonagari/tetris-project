@@ -81,38 +81,46 @@ In addition to the collision function which checks for vertical collision and de
 
 The rotation of a tetris piece is a matter of mapping the non-zero cells of the piece array into different coordinates. Take the clockwise T-piece, for example:
 
-<img src="https://i.imgur.com/aaLCCVk.png" width="200">
+<img src="https://i.imgur.com/aaLCCVk.png" width="300">
 
 Mapping each of the desired array coordinate from the current one reveals a pattern:
 
-<img src="https://i.imgur.com/vvyrgm0.png" width="150">
+<img src="https://i.imgur.com/vvyrgm0.png" width="200">
 
 From the pattern, we can deduce the following formula (note that the mathematical operation is on the right side to follow code syntax).
 
-<img src="https://i.imgur.com/Rl3orRC.png" width="150">
+<img src="https://i.imgur.com/Rl3orRC.png" width="300">
 
 A similar process for the counterclockwise T-piece rotation yields the following formula.
 
-<img src="https://i.imgur.com/39JsBEq.png" width="200">
+<img src="https://i.imgur.com/39JsBEq.png" width="300">
 
-I then applied the two formulas inside two functions, cwRotate and ccwRotate.
+I then applied the two formulas inside two functions, cwRotate and ccwRotate. Great success!
 
 <img src="https://i.imgur.com/eDavexO.png" height="125"><img src="https://i.imgur.com/J74WOgL.png" height="125">
 
-3. Players may start the game by selecting level 0 to 9. Each level corresponds to a different starting speed, which is calculated as such: `timer = 1500/(level+1)`
+### Auto-drop
+
+The hallmark of Tetris is each piece moving downward at a speed unaffected by the player's input. In this particular build, I use requestAnimationFrame() to control the rate at which the pieces fall, such that the rate increases the higher the level.
+
+<img src="https://i.imgur.com/hbV5sEw.png" width="900">
+
+### Levels, Scores, and Lines 
+
+1. Players may start the game by selecting level 0 to 9. Each level corresponds to a different starting speed, which is calculated as such: `timer = 1500/(level+1)`
 
     *e.g. If a player starts at level 3, there will be (1500/4) = 375ms gap between one frame and the next. Subsequent levels also follow this formula.
 
-4. Players enter the next level for every 10 lines cleared, in addition to their starting level. For example, a level 9 start brings the player to level 10 after 10 lines cleared.
+2. Players enter the next level for every 10 lines cleared, in addition to their starting level. For example, a level 9 start brings the player to level 10 after 10 lines cleared.
 
-5. Score calculation depends on the amount of lines cleared and the level players are currently at:
+3. Score calculation depends on the amount of lines cleared and the level players are currently at:
     * 1 line - 40 * (level + 1)
     * 2 lines - 100 * (level + 1)
     * 3 lines - 300 * (level + 1)
     * 4 lines - 1200 * (level + 1)
     (score calculation is adapted from the classic NES Tetris, which emphasizes tetris/4-line clears)
 
-6. Soft drops and hard drops are also worth some amount of scores:
+4. Soft drops and hard drops are also worth some amount of scores:
     * Soft drop = 1 * distance
     * Hard drop = 2 * distance
 
