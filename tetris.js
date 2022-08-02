@@ -216,7 +216,7 @@ function lineClear (canvasArr) {
 //* animate flash/toggle for rows that are cleared
 function toggleRow(row, canvasArr){
     let flashToggle = 0;
-    const flashAmount = 3;
+    const flashAmount = 5;
     for (let i = 0 ; i <= flashAmount ; i++){
         setTimeout(()=>{    //visually flash row before clearing
             if(flashToggle % 2 === 0){
@@ -230,11 +230,11 @@ function toggleRow(row, canvasArr){
                 canvasArr.splice(row,1);                    //remove that row from canvas array
                 canvasArr.unshift([0,0,0,0,0,0,0,0,0,0]);   //and add row of empty cells at the top of canvas array
             }
-        }, (50*i));
+        }, (60*i));
     }
     setTimeout(()=>{
         renderGame();
-    }, (50*flashAmount));
+    }, (60*flashAmount));
 }
 
 //* transpose cells of an input array based on clockwise rotation 
@@ -319,7 +319,7 @@ function startPlay(startLevelNum){
 //! Create auto-drop/gravity mechanism
 
 let dropCounter = 0;
-let dropInterval = levelUpTimer();
+let dropInterval = 0;
 let lastTime = 0;
 let gameOverFlag = 1; //game can only start if gameOverFlag === 0 (by pressing start button)
 
