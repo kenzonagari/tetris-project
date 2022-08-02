@@ -89,7 +89,7 @@ Mapping each of the desired array coordinate from the current one reveals a patt
 
 <img src="https://i.imgur.com/vvyrgm0.png" width="200">
 
-From the pattern, we can deduce the following formula (note that the mathematical operation is on the right side to follow code syntax).
+From the pattern, we can deduce the following formula (note that the mathematical operation is on the right side to follow programming conventions).
 
 <img src="https://i.imgur.com/Rl3orRC.png" width="300">
 
