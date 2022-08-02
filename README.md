@@ -81,23 +81,23 @@ In addition to the collision function which checks for vertical collision and de
 
 The rotation of a tetris piece is a matter of mapping the non-zero cells of the piece array into different coordinates. Take the clockwise T-piece, for example:
 
-<img src="https://i.imgur.com/aaLCCVk.png" width="400">
+<img src="https://i.imgur.com/aaLCCVk.png" width="200">
 
 Mapping each of the desired array coordinate from the current one reveals a pattern:
 
-<img src="https://i.imgur.com/vvyrgm0.png" width="300">
+<img src="https://i.imgur.com/vvyrgm0.png" width="150">
 
 From the pattern, we can deduce the following formula (note that the mathematical operation is on the right side to follow code syntax).
 
-<img src="https://i.imgur.com/Rl3orRC.png" width="300">
+<img src="https://i.imgur.com/Rl3orRC.png" width="150">
 
 A similar process for the counterclockwise T-piece rotation yields the following formula.
 
-<img src="https://i.imgur.com/39JsBEq.png" width="350">
+<img src="https://i.imgur.com/39JsBEq.png" width="200">
 
 I then applied the two formulas inside two functions, cwRotate and ccwRotate.
 
-<img src="https://i.imgur.com/eDavexO.png" height="150"><img src="https://i.imgur.com/J74WOgL.png" height="150">
+<img src="https://i.imgur.com/eDavexO.png" height="125"><img src="https://i.imgur.com/J74WOgL.png" height="125">
 
 3. Players may start the game by selecting level 0 to 9. Each level corresponds to a different starting speed, which is calculated as such: `timer = 1500/(level+1)`
 
