@@ -40,7 +40,7 @@ As a Player:
 
 ## Wireframe
 (In no particular order)
-* Main canvas
+* Main canvas/board
 * Score
 * Lines
 * Level 
