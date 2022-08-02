@@ -13,7 +13,7 @@ Tetris is a single-player puzzle game. Per Wikipedia, "In Tetris, players comple
 
 Since this particular Tetris build is inspired by the classic 1989 version, modern Tetris functionalities such as wall kick, multiple next piece preview, piece hold, and auto-lock delay are not included. However, hard drop is included to allow for a faster game pace.
 
-![1989 Classic NES Tetris](https://imgur.com/NGDi5Wt)
+![1989 Classic NES Tetris](https://i.imgur.com/NGDi5Wt.png)
 
 ## Timeframe
 
