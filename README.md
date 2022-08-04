@@ -128,7 +128,7 @@ The hallmark of Tetris is each piece moving downward at a speed unaffected by th
 
 ## Future Developments
 
-One major fix that this particular build needs is the finetuning of the keyboard input to allow for a fast-paced gameplay. A particular quirk in the JavaScript keydown input is that pressing one key while holding another somehow negates the latter, and as such I may work towards finding a solution to this quirk. Input speed parameters such as Auto-Repeat Delay and Auto-Repeat Speed are also something that can be investigated further.
+One major fix that this particular build needs is the finetuning of the keyboard input to allow for a fast-paced gameplay. There is a particular quirk in the JavaScript keydown input in which pressing one key while holding another somehow negates the latter, and so I may work towards finding a solution to this quirk. Input speed parameters such as [Auto-Repeat Delay and Auto-Repeat Speed](https://tetris.fandom.com/wiki/DAS) are also something that can be investigated further.
 
 While the game currently doesn't have any of the modern Tetris functionalities (except for Hard Drop), it is certainly more than possible to work on add-ons such as piece hold, ghost pieces .etc to make the game more playable for modern players.
 
