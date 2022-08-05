@@ -1,7 +1,7 @@
 # tetris.js
 Simple Tetris build using JavaScript + jQuery + HTML + CSS
 
-<img src="https://i.imgur.com/NcZzO4P.png" width="400">
+<img src="https://i.imgur.com/uXk36L9.png" width="400">
 
 Try it out! https://tetris-js-kenzo.vercel.app/
 
