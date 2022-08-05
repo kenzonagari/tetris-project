@@ -110,7 +110,7 @@ function logNextPiece(arr){
                 colorNum = arr[j][i];
                 $nextPieceGrid.append($nextPieceSquare.css('background',piecesColor[colorNum-1]));
             } else {
-                $nextPieceGrid.append($nextPieceSquare.addClass("blank"));
+                $nextPieceGrid.append($nextPieceSquare.addClass("blank-square"));
             }
         }
     }

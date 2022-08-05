@@ -3,27 +3,38 @@ body {
     font-family: 'Press Start 2P', cursive;
     font-size: 10px;
     color:rgb(255, 243, 228);
+    touch-action: manipulation;
 }
 
-#canvasesdiv {
+h1, h2{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+h1{
+    letter-spacing: 2px;
+}
+
+h2 {
+    letter-spacing: 1.25px;
+    font-size: 1.2em;
+}
+
+#main-div {
+    width: fit-content;
     display: flex;
     flex-direction: row;
-    width:500px; 
-    height:250px;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    margin: 5px auto;
+    left: 40%;
+    transform: translateX(-50%);
 }
 
 #sidebar {
+    margin-top: 40px;
     width:350px; 
-    margin-left: 10px;
-    transform: scale(0.95);
-}
-
-p{
-    font-size: 14px;
-    width: 500px;
-    padding: 10px;
 }
 
 .instruction {
@@ -45,10 +56,10 @@ p{
 .high-scores-box {
     width: 250px;
     height: 280px;
-    padding: 10px;
+    padding: 5px;
     padding-left: 20px;
-    margin-left: 20px;
-    margin-top: 0px;
+    margin-left: 10px;
+    margin-top: 20px;
     background-color: #000;
     border-radius: 15px;
     font-size: 1.25em;
@@ -63,75 +74,74 @@ p{
 }
 
 #container {
-    transform: scale(0.64);
     display: flex;
     flex-direction: row;
-    margin: 0 auto;
     width: 100%;
 }
 
-#container-info{
-    position: absolute;
-    top: -5%;
-    left: -170%;
+#container-canvas{
+    margin-left: 40px;
 }
 
+
 canvas {
-    width:500px;
-    height:1000px;
-    border:0px solid #000;
+    width:300px;
+    height:600px;
     position: absolute;
-    /* border: 0px solid rgb(99, 96, 76);
-    border-style:inset; */
 }
 
 #grid-bg {
     border-radius: 15px;
     z-index: 1;
-    opacity: 20%;
-    
+    opacity: 10%;
+    mix-blend-mode: screen;
 }
 
 #grid {
     border-radius: 15px;
-    z-index: 2;
-    mix-blend-mode: overlay;
+    z-index: 0;
+    
+}
+
+#container-info{
+    position: relative;
+    left: 325px;
 }
 
 .sidebox{
     background: black;
-    width: 300px;
-    height: 100px;
-    border-radius: 15px;
+    width: 180px;
+    height: 50px;
+    border-radius: 10px;
     position: relative;
-    left: 140%;
     /* color: white; */
-    font-size: 2em;
+    font-size: 1.25em;
     text-align:center;
     vertical-align: middle;
-    line-height: 42px; 
+    line-height: 20px; 
+    padding-top: 5px;
     margin: 5%;
 }
 
 .buttons{
-    width: 550px;
+    width: 300px;
+    margin-top: 30px;
+    margin-left: 10px;
     position: relative;
-    left: 133%;
-    margin: 10%;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .button{
-    width: 80px;
-    height: 80px;
-    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.25em;
     font-family: 'Press Start 2P', cursive;
     color:rgb(255, 243, 228);
     background-color: #000;
-    border-radius: 15px;
-    margin: 10px;
+    border-radius: 10px;
+    margin: 5px;
     cursor: pointer;
     transition: all ease 0.2s;
 }
@@ -142,21 +152,12 @@ canvas {
     transform: translateY(-5px);
 }
 
-#score {
-    left: 140%;
-}
-
-#line-count{
-    top: 10%;
-}
-
 #next-piece{
-    top: 20%;
-    height: 250px;
+    height: 150px;
 }
 
 #container-next-piece{
-    flex-basis: 50px;
+    flex-basis: 30px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -166,14 +167,14 @@ canvas {
 
 .piece-square{
     background:rgb(255, 140, 0);
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     margin: 0 0;
 }
 
-.blank{
-    width: 50px;
-    height: 50px;
+.blank-square{
+    width: 30px;
+    height: 30px;
     opacity: 0%;
 }
 
@@ -186,12 +187,11 @@ canvas {
 }
 
 #message-log{
-    position: relative;
-    top: 40%;
-    left: 145%;
-    font-size: 2.3em;
+    position: absolute;
+    font-size: 1.5em;
     color:rgb(210, 255, 227);
-    margin: 5px;
+    margin: 20px;
+    margin-top: 30px;
     width: fit-content;
 }
 
@@ -199,7 +199,132 @@ canvas {
     animation: up 2s ease-out;
 }
 
+#container-controller{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    margin: 20px;
+    bottom: 0px;
+    right: 0px;
+}
+
+#container-mobile-btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#d-pad-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.mobile-btn{
+    background: rgb(213, 213, 213);
+    width: 40px;
+    height: 45px;
+    margin: 5px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+}
+
+#left-btn{
+    transform: rotate(-90deg);
+    margin-right: 30px;
+}
+
+#right-btn{
+    transform: rotate(90deg);
+    margin-left: 30px;
+}
+
+#down-btn{
+    transform: rotate(180deg);
+}
+
+#ZX-row{
+    display: flex;
+    flex-direction: row;
+    margin-right: 30px;
+}
+
+#Z-btn{
+    height: 40px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    text-align: center;
+    font-size: 1.5em;
+    color: rgb(84, 84, 84);
+    line-height: 40px;
+}
+
+#X-btn{
+    height: 40px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    text-align: center;
+    font-size: 1.5em;
+    color: rgb(84, 84, 84);
+    line-height: 40px;
+}
+
+
+
 @keyframes up {
     0%{opacity: 1;}
     100%{transform: translateY(-20px); opacity: 0;}   
+}
+
+@media only screen and (max-width: 850px) {
+    /* For mobile phones: */
+    h1{
+        text-align: center;
+        font-size: 1.25em;
+        margin: 12.5px;
+        width: auto;
+    }
+    h2{
+        text-align: center;
+        font-size: 1em;
+        margin: 12.5px;
+        width: auto;
+    }
+    #sidebar{
+        flex-direction: row;
+        position: absolute;
+        top: 150%;
+        left: 30vw;
+    }
+    .sidebar{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+    #main-div{
+        position: relative;
+        top: -10vh;
+        left: -5vw;
+        width: auto;
+        -webkit-transform: scale(0.65);
+        -moz-transform: scale(0.65);
+        -o-transform: scale(0.65);
+    }
+    .buttons{
+        width: 250px;
+    }
+    #container-controller{
+        bottom: -250px;
+        transform: scale(1.25);
+    }
+}
+
+@media only screen and (min-width: 850px) {
+    #container-controller{
+        display: none;
+    }
 }

@@ -396,6 +396,37 @@ $(document).keyup(function (event) {
     }
 });
 
+$('.mobile-btn').on('click',(event)=>{
+    if(gameOverFlag === 0){
+        if(posY !== -1){
+            
+            if(event.target.id === 'Z-btn') { //z-key
+                    rotatePiece('ccw');
+            }
+
+            if(event.target.id === 'X-btn') { //z-key
+                rotatePiece('cw');
+            }
+            
+        }
+
+        if(event.target.id === 'left-btn') { //LEFT arrow
+            movePiece("left");
+        }
+        
+        if(event.target.id === 'right-btn') { //RIGHT arrow
+            movePiece("right");
+        }
+        if(event.target.id === 'down-btn') { //DOWN arrow
+            dropdownScore("soft"); //* add dropdown score every time down key is pressed
+            movePiece("down");
+        }
+        if(event.target.id === 'up-btn') { //UP arrow
+            movePiece("harddrop");
+        }
+    }
+});
+
 //* button starts game on click, each with different level start
 
 for (let i=0 ; i < 10 ; i++){
