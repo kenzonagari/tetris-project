@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <title>Tetris Project</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,58 +21,83 @@
 </head>
 
 <body>
+
+    <h1>
+        TETRIS.JS
+    </h1>
+    <h2>
+        (by Kenzo, for GA SEIF10 Project 1)
+    </h2>
     
-    <div id="canvasesdiv">
+    <div id="main-div">
         <div id="sidebar">
-            <p>
-                TETRIS.JS <br>
-                by KENZO <br><br>
-                GA SEIF10 - Project 1 <br><br><br>
+            <p class="sidebar">
                 <span class="instruction">
-                move left | LEFT arrow <br>
-                move right | RIGHT arrow <br>
-                move down | DOWN arrow <br>
-                hard drop | UP arrow <br>
-                rotate ccw | z <br>
-                rotate cw | x <br>
-                <br>
-                <strong>Select level 0-9 to start game!</strong>
+                    move left | LEFT arrow <br>
+                    move right | RIGHT arrow <br>
+                    move down | DOWN arrow <br>
+                    hard drop | UP arrow <br>
+                    rotate ccw | z <br>
+                    rotate cw | x <br>
+                    <br>
+                    <strong>Select level 0-9 to start game!</strong>
                 </span>
+
                 <div class="high-scores-box drop-shadow" id="high-scores">
                     <span id="high-scores-title">HIGH SCORES</span>
                     <ol id="ol-high-scores">
                     </ol>
                 </div>
-        
+
             </p>
         </div>
 
-    <div id = "container">
-        <canvas class="drop-shadow" id="grid-bg"></canvas>
-        <canvas class="drop-shadow" id="grid" ></canvas>
-        <div id="container-info">
-            <div class="sidebox drop-shadow" id="score">SCORE<br>0</div>
-            <div class="sidebox drop-shadow" id="line-count">LINES<br>0</div>
-            <div class="sidebox drop-shadow" id="level">LEVEL<br>0</div>
-            <div class="sidebox drop-shadow" id="next-piece">NEXT PIECE<br>
-                <div id="container-next-piece"></div>
-            </div>
-            <div class="buttons" id="buttons">
-                <!-- buttons go here -->
+        <div id = "container">
+            <div id = "container-canvas">
+                <canvas class="drop-shadow" id="grid-bg"></canvas>
+                <canvas class="drop-shadow" id="grid" ></canvas>
             </div>
 
-            <div id="message-log">
-                <!-- <div id="message">hello</div> -->
-                <!-- message pop-ups go here -->
-            </div>
+            <div id="container-info">
+                <div class="sidebox drop-shadow" id="score">SCORE<br>0</div>
+                <div class="sidebox drop-shadow" id="line-count">LINES<br>0</div>
+                <div class="sidebox drop-shadow" id="level">LEVEL<br>0</div>
+                <div class="sidebox drop-shadow" id="next-piece">NEXT PIECE<br>
+                    <div id="container-next-piece"></div>
+                </div>
+                <div class="buttons" id="buttons">
+                    <!-- buttons go here -->
+                </div>
 
+                <div id="message-log">
+                    <!-- <div id="message">hello</div> -->
+                    <!-- message pop-ups go here -->
+                </div>
+            </div>
         </div>
-
-
-    </div>
-
+        <div id="container-controller">
     
+            <div id="ZX-row">
+                <div id="Z-btn" class="mobile-btn">Z</div>
+                <div id="X-btn" class="mobile-btn">X</div>
+            </div>
+    
+            <div id="container-mobile-btn">
+                <div id="d-pad-row">
+                    <div id="up-btn" class="mobile-btn"></div>
+                </div>
+                <div id="d-pad-row">
+                    <div id="left-btn" class="mobile-btn"></div>
+                    <div id="right-btn" class="mobile-btn"></div>
+                </div>
+                <div id="d-pad-row">
+                    <div id="down-btn" class="mobile-btn"></div>
+                </div>
+            </div>
+    
+        </div>
     </div>
+    
     
     <script src="array-generator.js"></script>
     <script src="tetriminoes.js"></script>
